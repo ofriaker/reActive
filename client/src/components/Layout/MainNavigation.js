@@ -1,23 +1,27 @@
 import { Link } from 'react-router-dom';
 import { useContext } from 'react';
-import classNamees from './MainNavigation.module.css';
 import AuthContext from '../../store/auth-context';
+import { useState } from 'react';
+import React from 'react';
+
+
 
 
 const MainNavigation = () => {
 
   const authCtx = useContext(AuthContext);
   const loggin = authCtx.isLoggedin;
+
   
-  return (
+    return (
     <header>
     <div className='p-3 text-center bg-white border-bottom'>
       <div className='container'>
         <div className='row mt-2'>
           <div className='col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0'>
-            <a href="#!" className='ms-md-2 mb-2'>
+            <Link to='/' className='ms-md-2 mb-2'>
               <img src="images/logo.png" height="60" />
-            </a>
+            </Link>
           </div>
 
           <div className='col-md-4'>
@@ -28,26 +32,36 @@ const MainNavigation = () => {
           </div>
 
     
-        <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1">
+        <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
             <a className='text-reset me-3' href="#">
               <span><i className='fas fa-shopping-cart'></i></span>
               <span className='badge rounded-pill badge-notification bg-danger'>4</span>
             </a>
-            <Link to='/'>My cart</Link>
+            <Link to='/' style={{color: '#333333'}}>My cart</Link>
           </div>
+          { !loggin && (
           <div className='d-flex p-3'>
             <a className='text-reset me-3' href="#">
               <span><i className='fas fa-user'></i></span>
             </a>
-            <Link to='/auth'>Login</Link>
-          </div>      
+            <Link to='/auth' style={{color: '#333333'}}>Login</Link>
+          </div>)} 
+          { loggin && (
+            <div className='d-flex p-3'>
+            <a className='text-reset me-3' href="#">
+              <span><i className='fas fa-user'></i></span>
+            </a>
+            <Link to='/profile' style={{color: '#333333'}}>Account</Link>
+          </div>   
+          )}   
+           
         </div>
 
-      <nav className="navbar navbar-expand-lg navbar-light bg-white">
+      <nav className="navbar navbar-expand-lg navbar-light bg-light">
         <div className="container justify-content-center justify-content-md-between">
           <ul className="navbar-nav flex-row">
-            <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+            <li className="nav-item me-lg-0 d-none d-md-inline-block">
               <a className="nav-link" href="#">Nutrion</a>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
@@ -65,7 +79,6 @@ const MainNavigation = () => {
     </div>
   </div>
   </div>
-  
 </header>
 
   // <header className={classNamees.header}>
