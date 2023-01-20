@@ -14,8 +14,8 @@ const MainNavigation = () => {
     <div className='p-3 text-center bg-white border-bottom'>
       <div className='container'>
         <div className='row mt-2'>
-          <div className='col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0 '>
-            <a href="#!" className='ms-md-2'>
+          <div className='col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0'>
+            <a href="#!" className='ms-md-2 mb-2'>
               <img src="images/logo.png" height="60" />
             </a>
           </div>
