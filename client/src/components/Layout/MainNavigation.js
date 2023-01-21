@@ -24,7 +24,7 @@ const MainNavigation = () => {
             </Link>
           </div>
 
-          <div className='col-md-4'>
+          <div className='col-md-4 mt-3'>
           <form className='d-flex input-group w-auto my-automb-3 mb-md-0'>
             <input type="search" className='form-control rounded' placeholder="Search in store"/>
             <span className='input-group-text border-0 d-none d-lg-flex'><i className='fas fa-search'></i></span>
@@ -62,16 +62,16 @@ const MainNavigation = () => {
         <div className="container justify-content-center justify-content-md-between">
           <ul className="navbar-nav flex-row">
             <li className="nav-item me-lg-0 d-none d-md-inline-block">
-              <a className="nav-link" href="#">Nutrion</a>
+              <Link to='/catagory' className="nav-link">Nutrion</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a className="nav-link" href="#">Clothing & Accessories </a>
+              <Link to='/catagory' className="nav-link">Clothing & Accessories</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a className="nav-link" href="#">Foods & Snacks </a>
+              <Link to='/catagory' className="nav-link">Foods & Snacks</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <a className="nav-link" href="#">Vitamins</a>
+              <Link to='/catagory' className="nav-link">Vitamins</Link>
             </li>
           </ul>
         </div>
@@ -80,31 +80,6 @@ const MainNavigation = () => {
   </div>
   </div>
 </header>
-
-  // <header className={classNamees.header}>
-    //   <Link to='/'>
-    //     <div className={classNamees.logo}>React Auth</div>
-    //   </Link>
-    //   <nav>
-    //     <ul>
-    //       { !loggin && (
-    //       <li>
-    //         <Link to='/auth'>Login</Link>
-    //       </li>
-    //       )}
-    //       { loggin && (
-    //       <li>
-    //         <Link to='/profile'>Profile</Link>
-    //       </li>
-    //       )}
-    //       { loggin && (
-    //       <li>
-    //         <button>Logout</button>
-    //       </li>
-    //       )}
-    //     </ul>
-    //   </nav>
-    // </header>
   );
 };
 
