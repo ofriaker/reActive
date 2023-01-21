@@ -1,3 +1,4 @@
+import ItemsGallry from '../ItemsGallery/ItemsGallery';
 import classes from './StartingPageContent.module.css';
 
 const StartingPageContent = () => {
@@ -21,6 +22,7 @@ const StartingPageContent = () => {
         <h1 className='mb-3'>Our best sellers</h1>
         <h4 className='mb-3'>Subheading</h4>
     </div>
+    <ItemsGallry></ItemsGallry>
     </section>
   );
 };
