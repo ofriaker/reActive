@@ -54,7 +54,7 @@ const Product = () => {
                                 <div className={isMinusEnabled ? 'button_' : 'button_disabled'} onClick={onMinusHandler}></div>
                                 <div className='col-md-2'></div>
                                 <div className='col-md-4'>
-                                    <button className='to_cart'>Add to cart</button>
+                                    <button className="to_cart">Add to cart</button>
                                 </div>
                             </div>
                         </div>
