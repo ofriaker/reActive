@@ -3,3 +3,83 @@
     color: #333333;
     height: 1px;
 }
+
+.button_ {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    cursor: pointer;
+    border: 2px solid #008190;
+    border-radius: 5px;
+
+}
+
+.button_disabled {
+    position: relative;
+    width: 35px;
+    height: 35px;
+    background: #fff;
+    cursor: not-allowed;
+    border: 2px solid #333333;
+    border-radius: 5px;
+}
+
+.button_disabled:after {
+    content: '';
+    position: absolute;
+    transform: translate(-25%, 320%);
+    height: 4px;
+    width: 50%;
+    background: #333333;
+}
+
+.button_:after {
+    content: '';
+    position: absolute;
+    transform: translate(-25%, 320%);
+    height: 4px;
+    width: 50%;
+    background: #008190;
+}
+
+.button_plus:before {
+    content: '';
+    position: absolute;
+    transform: translate(30%, 45%);
+    background: #008190;
+    height: 50%;
+    width: 4px;
+}
+
+.button_:hover:before,
+.button_:hover:after {
+    background: #fff;
+    transition: 0.2s;
+}
+
+.button_:hover {
+    background-color: #008190;
+    transition: 0.2s;
+}
+
+.quantiti_line {
+    margin-left: 2px;;
+}
+
+.to_cart {
+    font-size: 20px;
+    border-color: #008190;
+    background-color: #008190;
+    border-radius: 5px;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.to_cart:hover {
+    background-color: #005862;
+    border-color: #005862; 
+}
+
+/* changes */
