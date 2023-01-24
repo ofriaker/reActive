@@ -6,6 +6,7 @@ import AuthPage from './pages/AuthPage';
 import CatagoryPage from './pages/CatagoryPage';
 import HomePage from './pages/HomePage';
 import ProductPage from './pages/ProductPage';
+import CartPage from './pages/CartPage';
 
 
 function App() {
@@ -17,6 +18,7 @@ function App() {
         <Route path='/product' element={<ProductPage />} />
         <Route path='/profile' element={<ProfilePage/>}/>
         <Route path='/catagory' element={<CatagoryPage/>}/>
+        <Route path='/cart' element={<CartPage/>} />
       </Routes>
     </Layout>
   );
