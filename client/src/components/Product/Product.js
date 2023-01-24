@@ -1,6 +1,6 @@
 import './Product.css';
 import Select from 'react-select';
-import QuantityButton from './QuantityButton';
+import QuantityButton from '../Quantity/QuantityButton';
 
 const Product = () => {
     const imgSrc = "images/product.jpg";
