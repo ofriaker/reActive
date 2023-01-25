@@ -12,19 +12,14 @@ const productsUrlList = new Set();
 
 async function getMyProtein(url) {
     try {
-        // Fetch data from URL and store the response into a const
         const response = await fetch(url);
-        // Convert the response into text
         const body = await response.text();
         const bestsellersPage = cheerio.load(body);
+        
         bestsellersPage('.athenaProductBlock_linkImage').map((i, productLink) => {
             const productUrl = bestsellersPage(productLink).attr('href');
             const fullProductUrl = url + productUrl;
             productsUrlList.add(fullProductUrl);
-
-            // productsUrlList.forEach((url) => {
-            //     console.log(url);
-            // });
         });
 
     } catch (error) {

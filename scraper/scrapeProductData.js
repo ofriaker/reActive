@@ -8,7 +8,6 @@ let name ="";
 let description = "";
 let price = "";
 let rank = "";
-// let optionsCategoryName = ""
 let flavours = [];
 let category = "";
 
