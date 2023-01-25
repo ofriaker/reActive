@@ -1,9 +1,38 @@
 import './Cart.css';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+
+const calculateTotalPrice = (Items) => {
+    let prices = Items.map(item => item.price);
+    let sum = prices.reduce((a, b) => a + b, 0);
+    return sum;
+}
 
 const Cart = () => {
     let [totalPrice, setTotalPrice] = useState(0);
+    const [cartItems, setCartItems] = useState(new Array);
 
+    useEffect(() => {
+        setCartItems([
+            {
+                name: "Clear Whey Isolate",
+                imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
+                quantity: 1,
+                price: 5,
+                flavour: "Peach Tea"
+            },
+            {
+                name: "Sparkling Energy Drink",
+                imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
+                quantity: 2,
+                price: 16,
+                flavour: "Mixed Berry"
+            },
+        ]);
+    }, []);
+
+    useEffect(() => {
+        setTotalPrice(calculateTotalPrice(cartItems))}); 
+    
     return (
         <div className="container">
             <div className='row mt-2'>
