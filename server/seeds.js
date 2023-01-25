@@ -14,28 +14,30 @@ const seedItems = [
         name: 'Prothein',
         category: 'Nutirion',
         price: '20',
-        description: "Vanilla",
+        flavour: "Vanilla",
         productImageUrl: '/images/proteinvanil.jpg'
       },
       {
-        name: 'Nike Shirt',
-        category: 'Clothing&Accessories',
-        price: '40',
-        description: "Pink shirt",
-        productImageUrl: '/images/nike.jpg'
+        name: "Clear Whey Isolate",
+        imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
+        quantity: 1,
+        category: 'Nutirion',
+        price: 5,
+        flavour: "Peach Tea"
       },
       {
-        name: 'Nike Shirt',
-        category: 'Clothing&Accessories',
-        price: '40',
-        description: "Black shirt",
-        productImageUrl: '/images/nikeblack.jpg'
+        name: "Sparkling Energy Drink",
+        imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
+        quantity: 2,
+        category: 'Nutirion',
+        price: 8,
+        flavour: "Mixed Berry"
       },
       {
         name: 'Protein snack',
         category: 'Foods&Snacks',
         price: '10',
-        description: "Karamel",
+        flavour: "Karamel",
         productImageUrl: '/images/snak.png'
       }
 
