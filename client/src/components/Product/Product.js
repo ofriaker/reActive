@@ -4,6 +4,7 @@ import { useState } from 'react';
 import QuantityButton from '../Quantity/QuantityButton';
 
 const Product = () => {
+    //needs to get that data from the props
     const imgSrc = "images/product.jpg";
     const productName = "Layered Protein Bar";
     const price = 7;
