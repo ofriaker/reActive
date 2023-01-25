@@ -1,5 +1,6 @@
 import './Cart.css';
 import { useEffect, useState } from 'react';
+import CartItem from './CartItem';
 
 const calculateTotalPrice = (Items) => {
     let prices = Items.map(item => item.price);
@@ -31,7 +32,14 @@ const Cart = () => {
     }, []);
 
     useEffect(() => {
-        setTotalPrice(calculateTotalPrice(cartItems))}); 
+        setTotalPrice(calculateTotalPrice(cartItems))
+    }); 
+
+    let cartItemsComponents=[];
+
+    cartItems.forEach((item) => {
+        cartItemsComponents.push(<CartItem {...item}></CartItem>);
+    });
     
     return (
         <div className="container">
@@ -40,12 +48,12 @@ const Cart = () => {
             </div>
             <div className="row mt-2">
                 <h4 className="col-md-8">Items</h4>
-                <h4 className="col-md-2">Quantity</h4>
-                <h4 className="col-md-2">Price</h4>
+                <h4 className="col-md-2 text">Quantity</h4>
+                <h4 className="col-md-2 text">Price</h4>
                 <hr></hr>
             </div>
             <div>
-                {/* items itmes */}
+                {cartItemsComponents}
             </div>
             <div className="row">
                 <div className="col-md-8"></div>

@@ -38,7 +38,7 @@ const MainNavigation = () => {
               <span><i className='fas fa-shopping-cart'></i></span>
               <span className='badge rounded-pill badge-notification bg-danger'>4</span>
             </a>
-            <Link to='/' style={{color: '#333333'}}>My cart</Link>
+            <Link to='/cart' style={{color: '#333333'}}>My cart</Link>
           </div>
           { !loggin && (
           <div className='d-flex p-3'>
