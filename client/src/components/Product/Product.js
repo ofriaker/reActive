@@ -1,17 +1,23 @@
 import './Product.css';
 import Select from 'react-select';
+import { useState } from 'react';
 import QuantityButton from '../Quantity/QuantityButton';
 
 const Product = () => {
+    //needs to get that data from the props
     const imgSrc = "images/product.jpg";
     const productName = "Layered Protein Bar";
     const price = 7;
+    let [quantity, setQuantity] = useState(1);
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
     ];
     
+    const onQuantityChange = (newQuantity) => {
+        setQuantity(newQuantity);
+    }
 
     return (
         <div className="container">
@@ -30,7 +36,9 @@ const Product = () => {
                     <div className="row mt-1">
                         <h2 className='col-md-2 text'>Quantity:</h2>
                         <div className="row mt-1 quantiti_line"></div>
-                        <QuantityButton/>
+                        <QuantityButton 
+                            quantity={quantity}
+                            onQuantityChange={onQuantityChange} />
                     </div>
                     <div className='row'>
                         <i className='col-md-4'></i>
