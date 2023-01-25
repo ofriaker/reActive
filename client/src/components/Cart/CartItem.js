@@ -1,7 +1,20 @@
 import './CartItem.css';
+import { useEffect, useState } from 'react';
+import QuantityButton from '../Quantity/QuantityButton';
 
 const CartItem = (props) => {
-    console.log(props);
+    const [itemPrice, setItemPrice] = useState(props.quantity*props.price);
+    let [quantity, setQuantity] = useState(props.quantity);
+
+    const onQuantityChange = (newQuantity) => {
+        setQuantity(newQuantity);
+    }
+
+
+    useEffect(() => {
+        setItemPrice(props.price * quantity);
+    }); 
+
     return (
         <div className="">
             <div className="row mt-2">
@@ -14,9 +27,13 @@ const CartItem = (props) => {
                         <h5>flavour: {props.flavour}</h5>
                     </div>
                 </div>
-                {/* <h3 className="col-md-6">{props.name}</h3> */}
-                <h4 className="col-md-2 text">{props.quantity}</h4>
-                <h4 className="col-md-2 text">{props.price}$</h4>
+                <div className='col-md-2 text'>
+                    <QuantityButton 
+                        quantity={quantity}
+                        onQuantityChange={onQuantityChange}/>
+                </div>
+                {/* <h4 className="col-md-2 text">{props.quantity}</h4> */}
+                <h4 className="col-md-2 text">{itemPrice}$</h4>
             </div>
             <hr></hr>
         </div>

@@ -3,7 +3,7 @@ import { useEffect, useState } from 'react';
 import CartItem from './CartItem';
 
 const calculateTotalPrice = (Items) => {
-    let prices = Items.map(item => item.price);
+    let prices = Items.map(item => item.price*item.quantity);
     let sum = prices.reduce((a, b) => a + b, 0);
     return sum;
 }
@@ -25,7 +25,7 @@ const Cart = () => {
                 name: "Sparkling Energy Drink",
                 imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
                 quantity: 2,
-                price: 16,
+                price: 8,
                 flavour: "Mixed Berry"
             },
         ]);
@@ -33,7 +33,9 @@ const Cart = () => {
 
     useEffect(() => {
         setTotalPrice(calculateTotalPrice(cartItems))
+        // will only work when quantity will dynamicly change on db 
     }); 
+
 
     let cartItemsComponents=[];
 
