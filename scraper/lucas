@@ -1,0 +1,25 @@
+  // const $ = await getData(url);
+
+// function getData(url: string) {
+//     return fetch(url)
+//         .then((res) => res.text())
+//         .then((data) => {
+//             return cheerio.load(data);
+//         });
+// }
+
+// $("ul li div").each((_, elem) => {
+//     //   $(elem)
+//     // .find("div > a > img")
+//     // .each((_, elem) => {
+//     //   console.log($(elem).attr("src"));
+//     // });
+//     $(elem)
+//         .find('a[class="athenaProductBlock_linkImage"]')
+//         .each((_, el) => {
+//             const subaddress = $(el).attr("href");
+//             getData(url + subaddress).then(($$) => {
+//                 $$('img[class="athenaProductImageCarousel_image]').attr("src");
+//             });
+//         });
+// });
