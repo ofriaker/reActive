@@ -27,7 +27,10 @@ const ItemsGallry = ({catagory}) => {
       }, []); 
 
     const filterProducts= products.filter((product) => {
-        return (product.category== catagory);
+        if(catagory != null) {
+            return (product.category== catagory);
+        }
+        return product;
     })
       
     return (

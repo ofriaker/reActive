@@ -27,7 +27,7 @@ const Item = ({product}) => {
             </MDBCardText>
           </MDBCardBody>
           <MDBCardFooter>
-            <button className={classes.add} >Add to cart</button>
+            <button className={classes.add}>Add to cart</button>
           </MDBCardFooter>
         </MDBCard> 
     );
