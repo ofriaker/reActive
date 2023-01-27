@@ -1,0 +1,29 @@
+.br {
+    display: block;
+    color: #333333;
+    height: 1px;
+}
+
+.quantiti_line {
+    margin-left: 2px;;
+}
+
+.to_cart {
+    font-size: 20px;
+    border-color: #008190;
+    background-color: #008190;
+    border-radius: 5px;
+    color: white;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+
+.to_cart:hover {
+    background-color: #005862;
+    border-color: #005862; 
+}
+
+.text {
+    color: #333333;
+    text-align: left;
+}
