@@ -11,14 +11,16 @@ import {
 
 const Item = ({product}) => {
     return (
-      <MDBCard className='h-100'>
-          <MDBCardImage
+      <MDBCard>
+        <div className={classes.card}>
+          <MDBCardImage 
             src={product.productImageUrl}
             alt='...'
             position='top'
             width='150px'
-            height='300px'
-          />
+            height='300px'>
+          </MDBCardImage>
+          </div>
           <MDBCardBody>
             <MDBCardTitle>{product.name}</MDBCardTitle>
             <MDBCardText>
