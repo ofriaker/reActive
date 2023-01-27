@@ -12,12 +12,13 @@ mongoose.connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true })
 const seedItems = [
     {
         name: 'Prothein',
-        category: 'Nutirion',
+        category: 'Whey protein',
         price: '20',
         flavour: "Vanilla",
         productImageUrl: '/images/proteinvanil.jpg'
       },
       {
+
         name: "Clear Whey Isolate",
         imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
         quantity: 1,
@@ -35,10 +36,24 @@ const seedItems = [
       },
       {
         name: 'Protein snack',
-        category: 'Foods&Snacks',
+        category: 'Snacks',
         price: '10',
         flavour: "Karamel",
         productImageUrl: '/images/snak.png'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Snacks',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Drinks',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
       }
 
 ]

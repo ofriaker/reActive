@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { useState } from 'react';
 import React from 'react';
+import Catagory from '../Catagory/Catagory';
+import {
+  Route,
+  Link,
+} from "react-router-dom";
+import { Routes } from "react-router";
+
 
 
 
@@ -20,7 +26,7 @@ const MainNavigation = () => {
         <div className='row mt-2'>
           <div className='col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0'>
             <Link to='/' className='ms-md-2 mb-2'>
-              <img src="images/logo.png" height="60" />
+              <img src="images/logo.jpg" height="60" />
             </Link>
           </div>
 
@@ -34,7 +40,7 @@ const MainNavigation = () => {
     
         <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
-            <a className='text-reset me-3' href="#">
+            <a className='text-reset me-3' href="/cart">
               <span><i className='fas fa-shopping-cart'></i></span>
               <span className='badge rounded-pill badge-notification bg-danger'>4</span>
             </a>
@@ -42,7 +48,7 @@ const MainNavigation = () => {
           </div>
           { !loggin && (
           <div className='d-flex p-3'>
-            <a className='text-reset me-3' href="#">
+            <a className='text-reset me-3' href="/auth">
               <span><i className='fas fa-user'></i></span>
             </a>
             <Link to='/auth' style={{color: '#333333'}}>Login</Link>
@@ -62,16 +68,22 @@ const MainNavigation = () => {
         <div className="container justify-content-center justify-content-md-between">
           <ul className="navbar-nav flex-row">
             <li className="nav-item me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Nutrion</Link>
+              <Link to='/catagory/Whey protein' className="nav-link">Whey protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Clothing & Accessories</Link>
+              <Link to='/catagory/Milk protein' className="nav-link">Milk protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Foods & Snacks</Link>
+              <Link to='/catagory/Vegan protein' className="nav-link">Vegn protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Vitamins</Link>
+              <Link to='/catagory/Snacks' className="nav-link">Snacks</Link>
+            </li>
+            <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <Link to='/catagory/Spreads' className="nav-link">Spreads</Link>
+            </li>
+            <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <Link to='/catagory/Drinks' className="nav-link">Drinks</Link>
             </li>
           </ul>
         </div>

@@ -1,11 +1,21 @@
 .add {
     border-radius: 7px;
+    background-color: #008190;
     border-color: #008190;
-    background-color: white;
     width: 150px;
+    height: 30px;
+    color: white;
 }
 
 .add:hover {
     background-color: #008290c0;
-    color: white;
+    color: black;
+}
+
+h4 {
+    text-align: right;
+}
+
+h4 i {
+color: #008190;
 }

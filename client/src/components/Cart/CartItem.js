@@ -33,7 +33,14 @@ const CartItem = (props) => {
                         onQuantityChange={onQuantityChange}/>
                 </div>
                 {/* <h4 className="col-md-2 text">{props.quantity}</h4> */}
-                <h4 className="col-md-2 text">{itemPrice}$</h4>
+                <div className='col-md-2'>
+                    <div className='row'>
+                        <h4 className=" col-md-6 text">{itemPrice}$</h4>
+                        <button className="cancelBTn col-md-6">
+                            <i class="fa-solid fa-xmark"></i>                        
+                        </button>
+                    </div>
+                </div>    
             </div>
             <hr></hr>
         </div>
