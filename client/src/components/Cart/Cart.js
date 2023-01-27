@@ -57,6 +57,7 @@ const Cart = () => {
             <div>
                 {cartItemsComponents}
             </div>
+            
             <div className="row">
                 <div className="col-md-8"></div>
 
