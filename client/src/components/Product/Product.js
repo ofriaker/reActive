@@ -11,6 +11,7 @@ const Product = () => {
     const productDescription = "Same 6 layers, brand new look";
     const price = 7;
     const rating = 4.4;
+    const categoty ="Snacks";
     let [quantity, setQuantity] = useState(1);
     const options = [
         { value: 'chocolate', label: 'Chocolate' },
@@ -45,6 +46,9 @@ const Product = () => {
     return (
         <div className="container">
             <div className='row mt-2'>
+                <h6>{categoty}  {" > "} {productName} </h6>
+             </div>
+            <div className='row mt-3'>
                 <div className="col-md-6">
                     <img src={imgSrc} alt={productName} height="500" />
                 </div>
