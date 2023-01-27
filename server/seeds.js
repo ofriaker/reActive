@@ -12,31 +12,73 @@ mongoose.connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true })
 const seedItems = [
     {
         name: 'Prothein',
-        category: 'Nutirion',
+        category: 'Whey protein',
         price: '20',
         description: "Vanilla",
         productImageUrl: '/images/proteinvanil.jpg'
       },
       {
         name: 'Nike Shirt',
-        category: 'Clothing&Accessories',
+        category: 'Whey protein',
         price: '40',
         description: "Pink shirt",
-        productImageUrl: '/images/nike.jpg'
+        productImageUrl: '/images/proteinvanil.jpg'
       },
       {
         name: 'Nike Shirt',
-        category: 'Clothing&Accessories',
+        category: 'Whey protein',
         price: '40',
         description: "Black shirt",
-        productImageUrl: '/images/nikeblack.jpg'
+        productImageUrl: '/images/proteinvanil.jpg'
       },
       {
         name: 'Protein snack',
-        category: 'Foods&Snacks',
+        category: 'Milk protein',
         price: '10',
         description: "Karamel",
-        productImageUrl: '/images/snak.png'
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Milk protein',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Vegan protein',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Snacks',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Snacks',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Spreads',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
+      },
+      {
+        name: 'Protein snack',
+        category: 'Drinks',
+        price: '10',
+        description: "Karamel",
+        productImageUrl: '/images/proteinvanil.jpg'
       }
 
 ]

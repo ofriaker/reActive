@@ -14,7 +14,7 @@ const Catagory = () => {
         <div>
             <h1 className={classes.title}>{id}</h1>
             <hr></hr>
-            <ItemsGallry></ItemsGallry>
+            <ItemsGallry catagory={id}></ItemsGallry>
         </div>
       
     );

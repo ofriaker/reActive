@@ -26,7 +26,7 @@ const MainNavigation = () => {
         <div className='row mt-2'>
           <div className='col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0'>
             <Link to='/' className='ms-md-2 mb-2'>
-              <img src="images/logo.png" height="60" />
+              <img src="images/logo.jpg" height="60" />
             </Link>
           </div>
 
@@ -40,7 +40,7 @@ const MainNavigation = () => {
     
         <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
-            <a className='text-reset me-3' href="#">
+            <a className='text-reset me-3' href="/cart">
               <span><i className='fas fa-shopping-cart'></i></span>
               <span className='badge rounded-pill badge-notification bg-danger'>4</span>
             </a>
@@ -48,7 +48,7 @@ const MainNavigation = () => {
           </div>
           { !loggin && (
           <div className='d-flex p-3'>
-            <a className='text-reset me-3' href="#">
+            <a className='text-reset me-3' href="/auth">
               <span><i className='fas fa-user'></i></span>
             </a>
             <Link to='/auth' style={{color: '#333333'}}>Login</Link>
