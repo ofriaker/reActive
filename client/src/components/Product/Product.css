@@ -27,3 +27,18 @@
     color: #333333;
     text-align: left;
 }
+
+button {
+    background-color: transparent;
+    border: none;
+    outline: none;
+    cursor: pointer;
+}
+
+.on {
+    color: #008190;
+}
+
+.off {
+    color: #ccc;
+}
