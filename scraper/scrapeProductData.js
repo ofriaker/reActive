@@ -2,7 +2,7 @@ import * as cheerio from 'cheerio';
 import eq from 'cheerio-eq';
 import fetch from 'node-fetch';
 
-const productUrl = "https://www.myprotein.co.il/sports-nutrition/protein-spreads/11691950.html";
+// const productUrl = "https://www.myprotein.co.il/sports-nutrition/protein-spreads/11691950.html";
 let imgUrl ="";
 let name ="";
 let description = "";
@@ -11,7 +11,7 @@ let rank = "";
 let flavours = [];
 let category = "";
 
-async function getMyProteinProduct(url) {
+export async function getMyProteinProduct(url) {
     try {
         const response = await fetch(url);
         const body = await response.text();
@@ -33,6 +33,7 @@ async function getMyProteinProduct(url) {
                 .trim()
             );
         }
+        return ({name, imgUrl, description, price, rank, category, flavours});
     }
 
     catch (error) {
@@ -40,7 +41,7 @@ async function getMyProteinProduct(url) {
     }
 }
 
-await getMyProteinProduct(productUrl);
+//await getMyProteinProduct(productUrl);
 // console.log(imgUrl);
 // console.log(name);
 // console.log(description);
