@@ -1,23 +1,18 @@
-import WishList from '../WishList/WishList';
-import ProfileForm from './ProfileForm';
 import classes from './UserProfile.module.css';
+import React  from 'react';
+import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import Bars from '../Bars/Bars';
+
 
 const UserProfile = () => {
   return (
     <section className={classes.profile}>
       <header className='border-bottom d-flex'>
-      <h1>My account</h1>
-      {/* <h2>Welcome Amit</h2>
-      <div class="d-flex flex-row-reverse" >
-          <button type="button" class="btn btn-outline-info p-2 " data-mdb-ripple-color="dark" style={{borderColor:'#008190', color:'333333'}}>Logout</button>
-      </div> */}
-     
-      
-      {/* <ProfileForm /> */}
+      <h1 className='pb-3'>My account</h1>
       </header>
-      <WishList></WishList>
+      <Bars/>
     </section>
   );
 };
 
-export default UserProfile;
+export default UserProfile ;

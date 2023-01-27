@@ -74,13 +74,13 @@ const MainNavigation = () => {
               <Link to='/catagory/Milk protein' className="nav-link">Milk protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory/Vegan protein' className="nav-link">Vegn protein</Link>
+              <Link to='/catagory/Vegan protein' className="nav-link">Vegan protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory/Snacks' className="nav-link">Snacks</Link>
+              <Link to='/catagory/Protein Bars' className="nav-link">Protein Bars</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory/Spreads' className="nav-link">Spreads</Link>
+              <Link to='/catagory/Nut Butter' className="nav-link">Nut Butter</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
               <Link to='/catagory/Drinks' className="nav-link">Drinks</Link>
