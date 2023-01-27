@@ -2,14 +2,15 @@ import * as cheerio from 'cheerio';
 import eq from 'cheerio-eq';
 import fetch from 'node-fetch';
 
-// const url = "https://www.myprotein.co.il/sports-nutrition/protein-spreads/11691950.html";
 let imgUrl ="";
 let name ="";
 let description = "";
-let price = "";
-let rate = "";
-let flavours = [];
+let price = 0;
+let rate = 4;
+let flavoursSet;
+let cutFlavours;
 let category = "";
+let newLen;
 
 export async function getMyProteinProduct(url) {
     try {
@@ -17,24 +18,42 @@ export async function getMyProteinProduct(url) {
         const body = await response.text();
         const productPage = cheerio.load(body);
 
-        name = productPage('.athenaProductPage_productName > .productName > .productName_title').text();
-        imgUrl = productPage('.athenaProductImageCarousel_image').attr('src');
-        description = productPage('.athenaProductPage_productName > .productName > .productName_subtitle').text();
-        const priceBefore = productPage('.athenaProductPage_productPrice_top > .productPrice > .productPrice_priceWithBadge >.productPrice_priceInfo >.productPrice_price').text()
-        price = priceBefore.replace(/[^\d.-]/g, '');
-        rate = productPage('.productReviewStarsPresentational').attr('aria-label');
-        rate = rate.replace(/[^\d.-]/g, '');
-        category = productPage('.breadcrumbs_item-active').text().trim();
+        flavoursSet = new Set;
+        cutFlavours = new Set();
         let len = productPage('.athenaProductVariations_dropdownSegment >.athenaProductVariations_dropdown > option').length;
-        for (let i=0; i<len; i++) {
-            flavours.push(
-                productPage('.athenaProductVariations_dropdownSegment >.athenaProductVariations_dropdown > option')
-                .eq(i)
-                .text()
-                .trim()
-            );
+        if (len != 0) { 
+            name = productPage('.athenaProductPage_productName > .productName > .productName_title').text();
+            imgUrl = productPage('.athenaProductImageCarousel_image').attr('src');
+            description = productPage('.athenaProductPage_productName > .productName > .productName_subtitle').text();
+            const priceBefore = productPage('.athenaProductPage_productPrice_top > .productPrice > .productPrice_priceWithBadge >.productPrice_priceInfo >.productPrice_price').text()
+            price = priceBefore.replace(/[^\d.-]/g, '');
+            const beforeRate = productPage('.productReviewStarsPresentational').attr('aria-label');
+            if(beforeRate) {rate = beforeRate.replace(/[^\d.-]/g, '')};
+            category = productPage('.breadcrumbs_item-active').text().trim();
+            if (len > 5)
+            {
+                 newLen = 5;
+            } 
+            else newLen = len;
+            for (let i=0; i<newLen; i++) {
+                flavoursSet.add(
+                    productPage('.athenaProductVariations_dropdownSegment >.athenaProductVariations_dropdown > option')
+                    .eq(i)
+                    .text()
+                    .trim()
+                );              
         }
-        return ({name, imgUrl, description, price, rank, category, flavours});
+            const iterator = flavoursSet.values();
+        for (let i=0; i<newLen ; i++)
+        {
+            cutFlavours.add(iterator.next().value);
+        } 
+        const flavours = Array.from(cutFlavours);
+        console.log(flavours);
+
+
+            return ({ name, imgUrl, description, price, rate, category, flavours });
+    }
     }
 
     catch (error) {
@@ -42,11 +61,3 @@ export async function getMyProteinProduct(url) {
     }
 }
 
-// await getMyProteinProduct(url);
-// console.log(imgUrl);
-// console.log(name);
-// console.log(description);
-// console.log(price);
-// console.log(rate);
-// console.log(category);
-// console.log(flavours);

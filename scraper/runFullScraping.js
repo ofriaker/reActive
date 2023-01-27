@@ -18,13 +18,33 @@ await getMyProteinUrls(nutButter, productsUrlList);
 await getMyProteinUrls(drinks, productsUrlList);
 await getMyProteinUrls(milkProtein, productsUrlList);
 
-// console.log(productsUrlList.size);
-// console.log(productsUrlList.values().next().value);
 
-// var p = await getMyProteinProduct(productsUrlList.values().next().value);
-// here put p to mongo
+import mongoose from 'mongoose';
+import  Item  from '../server/models/item.js';
+
+
+mongoose.connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true })
+    .then(() => {
+        console.log("mongo connection open!!");
+    }).catch(err => {
+        console.log("no connection start");
+    })
+
+
+
 
 productsUrlList.forEach(async (url) => {
     var p = await getMyProteinProduct(url);
-    // put p to mongo
+    Item.insertMany(p)
+        .then(res => {
+            console.log(res)
+        })
+        .catch(e => {
+            console.log(e)
+        })
 });
+
+
+
+
+

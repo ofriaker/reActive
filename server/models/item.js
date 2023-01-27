@@ -13,9 +13,8 @@ const itemSchema = new mongoose.Schema({
         type: String,
     },
     price: {
-        type: Number,
-        require: true,
-        min: 0
+        type: String,
+        require: true
     },
     rate: {
         type: Number,
