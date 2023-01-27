@@ -2,12 +2,12 @@ import * as cheerio from 'cheerio';
 import eq from 'cheerio-eq';
 import fetch from 'node-fetch';
 
-// const productUrl = "https://www.myprotein.co.il/sports-nutrition/protein-spreads/11691950.html";
+// const url = "https://www.myprotein.co.il/sports-nutrition/protein-spreads/11691950.html";
 let imgUrl ="";
 let name ="";
 let description = "";
 let price = "";
-let rank = "";
+let rate = "";
 let flavours = [];
 let category = "";
 
@@ -22,7 +22,8 @@ export async function getMyProteinProduct(url) {
         description = productPage('.athenaProductPage_productName > .productName > .productName_subtitle').text();
         const priceBefore = productPage('.athenaProductPage_productPrice_top > .productPrice > .productPrice_priceWithBadge >.productPrice_priceInfo >.productPrice_price').text()
         price = priceBefore.replace(/[^\d.-]/g, '');
-        rank = productPage('.productReviewStarsPresentational').attr('aria-label');
+        rate = productPage('.productReviewStarsPresentational').attr('aria-label');
+        rate = rate.replace(/[^\d.-]/g, '');
         category = productPage('.breadcrumbs_item-active').text().trim();
         let len = productPage('.athenaProductVariations_dropdownSegment >.athenaProductVariations_dropdown > option').length;
         for (let i=0; i<len; i++) {
@@ -41,11 +42,11 @@ export async function getMyProteinProduct(url) {
     }
 }
 
-//await getMyProteinProduct(productUrl);
+// await getMyProteinProduct(url);
 // console.log(imgUrl);
 // console.log(name);
 // console.log(description);
 // console.log(price);
-// console.log(rank);
+// console.log(rate);
 // console.log(category);
 // console.log(flavours);
