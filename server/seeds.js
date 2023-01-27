@@ -14,61 +14,36 @@ const seedItems = [
         name: 'Prothein',
         category: 'Whey protein',
         price: '20',
-        description: "Vanilla",
+        flavour: "Vanilla",
         productImageUrl: '/images/proteinvanil.jpg'
       },
       {
-        name: 'Nike Shirt',
-        category: 'Whey protein',
-        price: '40',
-        description: "Pink shirt",
-        productImageUrl: '/images/proteinvanil.jpg'
+
+        name: "Clear Whey Isolate",
+        imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
+        quantity: 1,
+        category: 'Nutirion',
+        price: 5,
+        flavour: "Peach Tea"
       },
       {
-        name: 'Nike Shirt',
-        category: 'Whey protein',
-        price: '40',
-        description: "Black shirt",
-        productImageUrl: '/images/proteinvanil.jpg'
-      },
-      {
-        name: 'Protein snack',
-        category: 'Milk protein',
-        price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
-      },
-      {
-        name: 'Protein snack',
-        category: 'Milk protein',
-        price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
-      },
-      {
-        name: 'Protein snack',
-        category: 'Vegan protein',
-        price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
+        name: "Sparkling Energy Drink",
+        imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
+        quantity: 2,
+        category: 'Nutirion',
+        price: 8,
+        flavour: "Mixed Berry"
       },
       {
         name: 'Protein snack',
         category: 'Snacks',
         price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
+        flavour: "Karamel",
+        productImageUrl: '/images/snak.png'
       },
       {
         name: 'Protein snack',
         category: 'Snacks',
-        price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
-      },
-      {
-        name: 'Protein snack',
-        category: 'Spreads',
         price: '10',
         description: "Karamel",
         productImageUrl: '/images/proteinvanil.jpg'

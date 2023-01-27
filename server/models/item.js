@@ -5,21 +5,29 @@ const itemSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    category: {
+    imgUrl: {
         type: String,
         require: true
-    },
-    price: {
-        type: Number,
-        require: true,
-        min: 0
     },
     description: {
         type: String,
     },
-    productImageUrl: {
+    price: {
         type: String,
         require: true
+    },
+    rate: {
+        type: Number,
+        require: true,
+        min: 0,
+        max: 5
+    },
+    category: {
+        type: String,
+        require: true
+    },
+    flavours: {
+        type: [String]
     }
 
 })
