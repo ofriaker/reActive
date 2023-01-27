@@ -7,27 +7,27 @@ import {
   MDBCardTitle,
   MDBCardText,
   MDBCardFooter,
-  MDBRow,
-  MDBCol
 } from 'mdb-react-ui-kit';
 
-const Item = () => {
+const Item = ({product}) => {
     return (
       <MDBCard className='h-100'>
           <MDBCardImage
-            src='https://mdbootstrap.com/img/new/standard/city/044.webp'
+            src={product.productImageUrl}
             alt='...'
             position='top'
+            width='150px'
+            height='300px'
           />
           <MDBCardBody>
-            <MDBCardTitle>Card title</MDBCardTitle>
+            <MDBCardTitle>{product.name}</MDBCardTitle>
             <MDBCardText>
-              This is a longer card with supporting text below as a natural lead-in to additional content.
-              This content is a little bit longer.
+              {product.description}
+              <h4>{product.price}$<i className="fas fa-tag ms-1 p-1"></i></h4>
             </MDBCardText>
           </MDBCardBody>
           <MDBCardFooter>
-            <button className={classes.add}>Add to cart</button>
+            <button className={classes.add} >Add to cart</button>
           </MDBCardFooter>
         </MDBCard> 
     );
