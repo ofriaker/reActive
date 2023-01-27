@@ -1,4 +1,5 @@
 import { Routes, Route } from 'react-router-dom';
+import Catagory from './components/Catagory/Catagory';
 
 import Layout from './components/Layout/Layout';
 import UserProfile from './components/Profile/UserProfile';
@@ -14,7 +15,7 @@ function App() {
         <Route path='/' exact element={<HomePage/>}/>
         <Route path='/auth' element={<AuthPage/>}/>
         <Route path='/profile' element={<ProfilePage/>}/>
-        <Route path='/catagory' element={<CatagoryPage/>}/>
+        <Route path='/catagory/:id' element={<CatagoryPage/>}/>
       </Routes>
     </Layout>
   );

@@ -1,8 +1,14 @@
-import { Link } from 'react-router-dom';
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { useState } from 'react';
 import React from 'react';
+import Catagory from '../Catagory/Catagory';
+import {
+  Route,
+  Link,
+} from "react-router-dom";
+import { Routes } from "react-router";
+
 
 
 
@@ -62,16 +68,22 @@ const MainNavigation = () => {
         <div className="container justify-content-center justify-content-md-between">
           <ul className="navbar-nav flex-row">
             <li className="nav-item me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Nutrion</Link>
+              <Link to='/catagory/Whey protein' className="nav-link">Whey protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Clothing & Accessories</Link>
+              <Link to='/catagory/Milk protein' className="nav-link">Milk protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Foods & Snacks</Link>
+              <Link to='/catagory/Vegan protein' className="nav-link">Vegn protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory' className="nav-link">Vitamins</Link>
+              <Link to='/catagory/Snacks' className="nav-link">Snacks</Link>
+            </li>
+            <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <Link to='/catagory/Spreads' className="nav-link">Spreads</Link>
+            </li>
+            <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
+              <Link to='/catagory/Drinks' className="nav-link">Drinks</Link>
             </li>
           </ul>
         </div>
