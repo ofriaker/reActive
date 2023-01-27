@@ -9,10 +9,10 @@ let price = 0;
 let rate = 4;
 let flavoursSet;
 let cutFlavours;
-let category = "";
+// let category = "";
 let newLen;
 
-export async function getMyProteinProduct(url) {
+export async function getMyProteinProduct(url, category) {
     try {
         const response = await fetch(url);
         const body = await response.text();
@@ -29,7 +29,8 @@ export async function getMyProteinProduct(url) {
             price = priceBefore.replace(/[^\d.-]/g, '');
             const beforeRate = productPage('.productReviewStarsPresentational').attr('aria-label');
             if(beforeRate) {rate = beforeRate.replace(/[^\d.-]/g, '')};
-            category = productPage('.breadcrumbs_item-active').text().trim();
+            // category = productPage('.breadcrumbs_item-active').text().trim();
+            // category = category;
             if (len > 5)
             {
                  newLen = 5;
