@@ -1,42 +1,49 @@
 import classes from './Bars.module.css';
 import React  from 'react';
 import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
-
+import AuthContext from '../../store/auth-context';
+import { useState , useContext, useEffect } from 'react';
+import { selectBuys } from '../../store/selectors/buys';
+import { fetchAllBuys } from '../../store/middlewares/buys';
+import { useDispatch, useSelector } from 'react-redux';
 
 const Bars = () => {
 
-  const catagories = ["Wheyprotein","Drinks","Milkprotein","Veganprotein","Proteinbars","Nutbutter"];
-  const data = [
-    {
-      buyID: '1',
-      Milkprotein: 4000,
-      Veganprotein: 2400,
-      Snacks: 3000,
-      Drinks: 2000,
-    },
-    {
-      buyID: '2',
-      Milkprotein: 3000,
-      Veganprotein: 1398,
-    },
-    {
-      buyID: '3',
-      Milkprotein: 2000,
-      Veganprotein: 9800,
-    },
-    {
-      buyID: '1',
-      Milkprotein: 2780,
-      Veganprotein: 3908,
-      Proteinbars: 10000
-    },
-    {
-      buyID: '1',
-      Milkprotein: 500,
-      Veganprotein: 10000,
-      Proteinbars: 8000
-    },
-  ];
+  const authCtx = useContext(AuthContext);
+  const [data, setData] = useState([]);
+
+  const dispatch = useDispatch();
+  const buys = useSelector(selectBuys);
+
+    useEffect(() => {
+        dispatch(fetchAllBuys(authCtx.email));
+        console.log(buys);
+        buysTodata();
+    }, []); 
+
+    const buysTodata = async () => {
+        const data=[];
+        var b;
+        for(b of buys) {
+            var result={WheyProtein:0,Drinks:0,MilkProtein:0,VeganProtein:0,ProteinBars:0,NutButter:0};
+            var p;
+            for(p of b.products) {
+                    const URL='http://localhost:4000/api/items/'+p.productName;
+                    const res = await fetch(URL);
+                    var product = await res.json(); 
+                    console.log(product);
+                    var category = product[0].category.replaceAll(" ","");
+                    console.log(category);
+                    result[category] += ((+product[0].price) * p.quantity);
+            
+            } 
+            data.push(result);  
+        } 
+        setData(data);
+        console.log(data);
+    }
+  const catagories = ["WheyProtein","Drinks","MilkProtein","VeganProtein","ProteinBars","NutButter"];
+
   return (
     <div className='d-flex align-items-center justify-content-center  h-100'>
         <h2 className='mb-3'>My history</h2>
@@ -57,11 +64,11 @@ const Bars = () => {
     <YAxis />
     <Tooltip />
     <Legend />
-    <Bar dataKey="Milkprotein" stackId="a" fill="#BD1D61" />
-    <Bar dataKey="Wheyprotein" stackId="a" fill="#1494A1" />
-    <Bar dataKey="Veganprotein" stackId="a" fill="#233078" />
-    <Bar dataKey="Proteinbars" stackId="a" fill="#727E74" />
-    <Bar dataKey="Nutbutter" stackId="a" fill="#A0EAE0" />
+    <Bar dataKey="MilkProtein" stackId="a" fill="#BD1D61" />
+    <Bar dataKey="WheyProtein" stackId="a" fill="#1494A1" />
+    <Bar dataKey="VeganProtein" stackId="a" fill="#233078" />
+    <Bar dataKey="ProteinbBars" stackId="a" fill="#727E74" />
+    <Bar dataKey="NutButter" stackId="a" fill="#A0EAE0" />
     <Bar dataKey="Drinks" stackId="a" fill="pink" />
   </BarChart>
 
