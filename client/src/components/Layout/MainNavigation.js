@@ -68,13 +68,13 @@ const MainNavigation = () => {
         <div className="container justify-content-center justify-content-md-between">
           <ul className="navbar-nav flex-row">
             <li className="nav-item me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory/Whey protein' className="nav-link">Whey protein</Link>
+              <Link to='/catagory/Whey Protein' className="nav-link">Whey protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory/Milk protein' className="nav-link">Milk protein</Link>
+              <Link to='/catagory/Milk Protein' className="nav-link">Milk protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
-              <Link to='/catagory/Vegan protein' className="nav-link">Vegan protein</Link>
+              <Link to='/catagory/Vegan Protein' className="nav-link">Vegan protein</Link>
             </li>
             <li className="nav-item me-2 me-lg-0 d-none d-md-inline-block">
               <Link to='/catagory/Protein Bars' className="nav-link">Protein Bars</Link>
