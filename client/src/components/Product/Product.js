@@ -10,13 +10,26 @@ import { useLocation} from "react-router-dom";
 
 const Product = () => {
     const location = useLocation();
-    const item =location.state;
+    const item = location.state;
+    let flavours = new Array(...item.flavours);
+    const newF =[];
     
 
     const dispatch = useDispatch();
     const cartProducts = useSelector(selectCart);
 
+    // for (let f in item.flavours) {
+    //     console.log(item.flavours.length);
+    // }
 
+    // flavours.forEach(f => {
+    //     console.log(f);
+    // });
+    flavours.forEach(f => {
+        newF.push({value: f, label: f});
+    })
+
+    console.log((newF));
     // useEffect(() => {
     //     const productToAdd = { productName, imgSrc, productDescription, price, rating, categoty, flavours };
     //     console.log(cart);
@@ -71,7 +84,7 @@ const Product = () => {
                     <h2>{item.price}  ₪</h2>
                     <hr></hr>
                     <h4>Flavours:</h4>
-                    <Select options={item.flavours} value={item.flavours}></Select>
+                    <Select options={newF} value={newF[0]}></Select>
                     <div className='row mt-4'>
                         <i className='col-md-4'></i>
                         <button className='col-md-4 to_cart' >Add to cart</button>
