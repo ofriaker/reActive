@@ -26,7 +26,7 @@ const QuantityButton  = ({quantity, onQuantityChange}) => {
     return (
             <div className='row mt-1 box_'>
                 <button className="button_ col-md-1" onClick={onPlusHandler}><i className="fa-solid fa-plus"></i></button>
-                <div className="col-md-1 text_"><h3>{quantity}</h3></div>
+            <div className="col-md-1"><h3 className='textQ'>{quantity}</h3></div>
                 <button className={isMinusEnabled ? 'button_ col-md-1' : 'button_disabled col-md-1'} onClick={onMinusHandler}><i className="fa-solid fa-minus"></i></button>
             </div>
     );

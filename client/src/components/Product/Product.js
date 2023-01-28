@@ -1,10 +1,17 @@
 import './Product.css';
 import Select from 'react-select';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import QuantityButton from '../Quantity/QuantityButton';
+import { useDispatch, useSelector } from "react-redux";
+import { selectCart } from '../../store/selectors/cart';
+import { setCart } from '../../store/reducers/cart';
 
 
 const Product = () => {
+    const dispatch = useDispatch();
+    // const loading = useSelector(isLoading);
+    const cartProducts = useSelector(selectCart);
+
     //needs to get that data from the props
     const imgSrc = "images/product.jpg";
     const productName = "Layered Protein Bar";
@@ -13,7 +20,7 @@ const Product = () => {
     const rating = 4.4;
     const categoty ="Snacks";
     let [quantity, setQuantity] = useState(1);
-    const options = [
+    const flavours = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
@@ -22,6 +29,21 @@ const Product = () => {
     const onQuantityChange = (newQuantity) => {
         setQuantity(newQuantity);
     }
+
+
+    useEffect(() => {
+        const productToAdd = { productName, imgSrc, productDescription, price, rating, categoty, flavours };
+
+        dispatch(setCart(cartProducts, [productToAdd]));
+    }, []);
+
+    // function AddToCartHandler () {
+    //     // make sure to pass the right amont and flavour
+    //    console.log(cartProducts);
+        
+       
+    //    console.log(cartProducts);
+    // }
 
     const StarRating = () => {
         return (
@@ -61,7 +83,7 @@ const Product = () => {
                     <h2>{price} $</h2>
                     <hr></hr>
                     <h4>Flavours:</h4>
-                    <Select options={options}></Select>
+                    <Select options={flavours} value={flavours[0]}></Select>
                     <div className="row mt-1">
                         <h2 className='col-md-2 text'>Quantity:</h2>
                         <div className="row mt-1 quantiti_line"></div>
@@ -71,7 +93,7 @@ const Product = () => {
                     </div>
                     <div className='row'>
                         <i className='col-md-4'></i>
-                        <button className='col-md-4 to_cart'>Add to cart</button>
+                        <button className='col-md-4 to_cart' >Add to cart</button>
                     </div>
                 </div>
             </div>

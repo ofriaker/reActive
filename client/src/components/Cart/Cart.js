@@ -1,6 +1,10 @@
 import './Cart.css';
 import { useEffect, useState } from 'react';
+import { useDispatch, useSelector } from "react-redux";
 import CartItem from './CartItem';
+import { isLoading, selectCart } from '../../store/selectors/cart';
+import { setCart } from '../../store/reducers/cart';
+
 
 const calculateTotalPrice = (Items) => {
     let prices = Items.map(item => item.price*item.quantity);
@@ -9,39 +13,74 @@ const calculateTotalPrice = (Items) => {
 }
 
 const Cart = () => {
+    const dispatch = useDispatch();
     let [totalPrice, setTotalPrice] = useState(0);
-    const [cartItems, setCartItems] = useState(new Array);
+    const loading = useSelector(isLoading);
+    const cart = useSelector(selectCart);
+    let cartItemsComponents = [];
+
 
     useEffect(() => {
-        setCartItems([
-            {
-                name: "Clear Whey Isolate",
-                imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
-                quantity: 1,
-                price: 5,
-                flavour: "Peach Tea"
-            },
-            {
-                name: "Sparkling Energy Drink",
-                imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
-                quantity: 2,
-                price: 8,
-                flavour: "Mixed Berry"
-            },
-        ]);
-    }, []);
-
-    useEffect(() => {
-        setTotalPrice(calculateTotalPrice(cartItems))
-        // will only work when quantity will dynamicly change on db 
-    }); 
-
-
-    let cartItemsComponents=[];
-
-    cartItems.forEach((item) => {
-        cartItemsComponents.push(<CartItem {...item}></CartItem>);
+        setTotalPrice(calculateTotalPrice(cart));
     });
+    
+    if(cart) {
+        cart.forEach((item) => {
+            cartItemsComponents.push(<CartItem {...item}></CartItem>);
+        });
+    }
+    
+    // let cart = [];
+
+    // let cartItems = [
+    //     {
+    //         name: "Clear Whey Isolate",
+    //         imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
+    //         quantity: 1,
+    //         price: 5,
+    //         flavour: "Peach Tea"
+    //     },
+    //     {
+    //         name: "Sparkling Energy Drink",
+    //         imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
+    //         quantity: 2,
+    //         price: 8,
+    //         flavour: "Mixed Berry"
+    //     },
+    // ];
+
+    // useEffect(() => {
+    //     dispatch(setCart(cartItems));
+    // }, []);
+    
+    // const [cartItems, setCartItems] = useState(new Array);
+
+    // useEffect(() => {
+    //     setCartItems([
+    //         {
+    //             name: "Clear Whey Isolate",
+    //             imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
+    //             quantity: 1,
+    //             price: 5,
+    //             flavour: "Peach Tea"
+    //         },
+    //         {
+    //             name: "Sparkling Energy Drink",
+    //             imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
+    //             quantity: 2,
+    //             price: 8,
+    //             flavour: "Mixed Berry"
+    //         },
+    //     ]);
+    // }, []);
+
+    
+
+    // cartItems.forEach((item) => {
+    //     cartItemsComponents.push(<CartItem {...item}></CartItem>);
+    // });
+
+    
     
     return (
         <div className="container">
@@ -49,7 +88,7 @@ const Cart = () => {
                 <h2>Your Shopping Cart </h2>
             </div>
             <div className="row mt-2">
-                <h4 className="col-md-8">Items</h4>
+                <h4 className="col-md-8 text">Items</h4>
                 <h4 className="col-md-2 text">Quantity</h4>
                 <h4 className="col-md-2 text">Price</h4>
                 <hr></hr>
