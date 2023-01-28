@@ -28,6 +28,10 @@ const itemSchema = new mongoose.Schema({
     },
     flavours: {
         type: [String]
+    },
+    _id: {
+        type: String,
+        require: true,
     }
 
 })

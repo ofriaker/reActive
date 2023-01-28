@@ -5,18 +5,20 @@ export const cartSlice = createSlice({
     initialState: {
         cart: [
         {
-            name: "Clear Whey Isolate",
-            imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
-            quantity: 1,
-            price: 5,
-            flavour: "Peach Tea"
+                _id: "63d521d220d679030e472172",
+                name: "Protein Bor",
+                imgUrl: "https://static.thcdn.com/productimg/1600/1600/13952104-1815018994258468.jpg",
+                quantity: 1,
+                price: 70.45,
+                flavour: "White Chocolate Peanut"
         },
         {
+            _id: "63d521d620d679030e4721fe",
             name: "Sparkling Energy Drink",
-            imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
+            imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770760-2054858302480549.jpg",
             quantity: 2,
             price: 8,
-            flavour: "Mixed Berry"
+            flavour: "Lemon Lime"
         },
     ],
         loading: true,
@@ -32,12 +34,10 @@ export const cartSlice = createSlice({
             newCart.add(...action.payload);
             return {...state, cart: [...newCart]};
         },
-        //only send index
         incQuantity: (state, action) => {
             let newCart = [...state.cart];
             newCart[action.payload].quantity = newCart[action.payload].quantity + 1;
         },
-        //only send index
         decQuantity: (state, action) => {
             let newCart = [...state.cart];
             newCart[action.payload].quantity = newCart[action.payload].quantity - 1;
