@@ -12,8 +12,6 @@ const Product = () => {
     const location = useLocation();
     const item =location.state;
     
-    let options = item.flavours
-    console.log(options);
 
     const dispatch = useDispatch();
     const cartProducts = useSelector(selectCart);
@@ -73,7 +71,7 @@ const Product = () => {
                     <h2>{item.price}  ₪</h2>
                     <hr></hr>
                     <h4>Flavours:</h4>
-                    <Select options={options.Array} value={item.flavours[0]}></Select>
+                    <Select options={item.flavours} value={item.flavours}></Select>
                     <div className='row mt-4'>
                         <i className='col-md-4'></i>
                         <button className='col-md-4 to_cart' >Add to cart</button>

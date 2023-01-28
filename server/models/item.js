@@ -26,9 +26,9 @@ const itemSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    flavours: {
-        type: [String]
-    },
+    flavours: [{
+        type: String
+    }],
     _id: {
         type: String,
         require: true,
