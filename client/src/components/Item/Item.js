@@ -8,17 +8,21 @@ import {
   MDBCardText,
   MDBCardFooter,
 } from 'mdb-react-ui-kit';
+import { Link } from "react-router-dom";
+
 
 const Item = ({product}) => {
     return (
       <MDBCard style={{height:'530px'}}>
-        <div className={classes.card}>
-          <MDBCardImage 
-            src={product.imgUrl}
-            alt='...'
-            position='top'>
-          </MDBCardImage>
-          </div>
+        <Link to='/product' state={product}> 
+          <div className={classes.card}>
+            <MDBCardImage 
+              src={product.imgUrl}
+              alt='...'
+              position='top'>
+              {/* <Link to='/prosuct' style={{ color: '#333333' }}></Link> */}
+            </MDBCardImage>
+            </div>
           <MDBCardBody>
             <MDBCardTitle>{product.name}</MDBCardTitle>
             <MDBCardText>
@@ -26,6 +30,7 @@ const Item = ({product}) => {
               <h4 className='price'>{product.price}$<i className="fas fa-tag ms-1 p-1"></i></h4>
             </MDBCardText>
           </MDBCardBody>
+          </Link>
           <MDBCardFooter>
             <button className={classes.add}>Add to cart</button>
           </MDBCardFooter>
