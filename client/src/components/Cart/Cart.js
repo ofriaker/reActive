@@ -7,7 +7,7 @@ import { setCart } from '../../store/reducers/cart';
 
 
 const calculateTotalPrice = (Items) => {
-    let prices = Items.map(item => item.price*item.quantity);
+    let prices = Items.map(item => item.price * item.quantity);
     let sum = prices.reduce((a, b) => a + b, 0);
     return sum;
 }
@@ -23,13 +23,14 @@ const Cart = () => {
     useEffect(() => {
         setTotalPrice(calculateTotalPrice(cart));
     });
-    
-    if(cart) {
-        cart.forEach((item) => {
-            cartItemsComponents.push(<CartItem {...item}></CartItem>);
+
+    if (cart) {
+        cart.forEach((item, index) => {
+            cartItemsComponents.push(<CartItem 
+                item={item} index={index}></CartItem>);
         });
     }
-    
+
     // let cart = [];
 
     // let cartItems = [
@@ -52,7 +53,7 @@ const Cart = () => {
     // useEffect(() => {
     //     dispatch(setCart(cartItems));
     // }, []);
-    
+
     // const [cartItems, setCartItems] = useState(new Array);
 
     // useEffect(() => {
@@ -74,14 +75,14 @@ const Cart = () => {
     //     ]);
     // }, []);
 
-    
+
 
     // cartItems.forEach((item) => {
     //     cartItemsComponents.push(<CartItem {...item}></CartItem>);
     // });
 
-    
-    
+
+
     return (
         <div className="container">
             <div className='row mt-2'>
@@ -96,7 +97,7 @@ const Cart = () => {
             <div>
                 {cartItemsComponents}
             </div>
-            
+
             <div className="row">
                 <div className="col-md-8"></div>
 

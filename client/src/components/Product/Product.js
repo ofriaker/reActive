@@ -1,10 +1,10 @@
 import './Product.css';
 import Select from 'react-select';
 import { useEffect, useState } from 'react';
-import QuantityButton from '../Quantity/QuantityButton';
+// import QuantityButton from '../Quantity/QuantityButton';
 import { useDispatch, useSelector } from "react-redux";
 import { selectCart } from '../../store/selectors/cart';
-import { setCart } from '../../store/reducers/cart';
+import cart, { setCart } from '../../store/reducers/cart';
 
 
 const Product = () => {
@@ -18,30 +18,32 @@ const Product = () => {
     const productDescription = "Same 6 layers, brand new look";
     const price = 7;
     const rating = 4.4;
-    const categoty ="Snacks";
-    let [quantity, setQuantity] = useState(1);
+    const categoty = "Snacks";
+    // let [quantity, setQuantity] = useState(1);
     const flavours = [
         { value: 'chocolate', label: 'Chocolate' },
         { value: 'strawberry', label: 'Strawberry' },
         { value: 'vanilla', label: 'Vanilla' }
     ];
-    
-    const onQuantityChange = (newQuantity) => {
-        setQuantity(newQuantity);
-    }
+
+    // const onQuantityChange = (newQuantity) => {
+    //     setQuantity(newQuantity);
+    // }
 
 
     useEffect(() => {
         const productToAdd = { productName, imgSrc, productDescription, price, rating, categoty, flavours };
-
+        console.log(cart);
         dispatch(setCart(cartProducts, [productToAdd]));
+        console.log(cart);
+
     }, []);
 
     // function AddToCartHandler () {
     //     // make sure to pass the right amont and flavour
     //    console.log(cartProducts);
-        
-       
+
+
     //    console.log(cartProducts);
     // }
 
@@ -62,14 +64,14 @@ const Product = () => {
                 })}
             </div>
         );
-                            
+
     };
 
     return (
         <div className="container">
             <div className='row mt-2'>
                 <h6>{categoty}  {" > "} {productName} </h6>
-             </div>
+            </div>
             <div className='row mt-3'>
                 <div className="col-md-6">
                     <img src={imgSrc} alt={productName} height="500" />
@@ -78,20 +80,21 @@ const Product = () => {
                 <div className="col-md-6">
                     <h1>{productName}</h1>
                     <h4>{productDescription}</h4>
-                    <StarRating/>
+                    <StarRating />
                     <hr></hr>
                     <h2>{price} $</h2>
                     <hr></hr>
                     <h4>Flavours:</h4>
                     <Select options={flavours} value={flavours[0]}></Select>
-                    <div className="row mt-1">
+                    {/* <div className="row mt-1">
                         <h2 className='col-md-2 text'>Quantity:</h2>
                         <div className="row mt-1 quantiti_line"></div>
-                        <QuantityButton 
+                        {/* <QuantityButton
                             quantity={quantity}
-                            onQuantityChange={onQuantityChange} />
-                    </div>
-                    <div className='row'>
+                            onQuantityChange={onQuantityChange} /> 
+                    {/* </div>  
+                    */}
+                    <div className='row mt-4'>
                         <i className='col-md-4'></i>
                         <button className='col-md-4 to_cart' >Add to cart</button>
                     </div>

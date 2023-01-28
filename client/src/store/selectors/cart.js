@@ -1,5 +1,5 @@
-export const selectCart = (state) => state.productsSlice.products;
-export const isLoading = (state) => state.productsSlice.loading;
+export const selectCart = (state) => state.cartSlice.cart;
+export const isLoading = (state) => state.cartSlice.loading;
 
 
 export * from "./cart";
