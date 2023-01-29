@@ -15,6 +15,7 @@ const Cart = () => {
     let [totalPrice, setTotalPrice] = useState(0);
     const loading = useSelector(isLoading);
     const cart = useSelector(selectCart);
+    let isCartEmpty = (cart.length == 0);
     let cartItemsComponents = [];
 
 
@@ -40,9 +41,11 @@ const Cart = () => {
                 <h4 className="col-md-2 text">Price</h4>
                 <hr></hr>
             </div>
-            <div>
-                {cartItemsComponents}
-            </div>
+            {isCartEmpty ? 
+                <h1>Your cart is empty :(</h1> :
+                <div >{cartItemsComponents}</div>
+            }
+            
 
             <div className="row">
                 <div className="col-md-8"></div>

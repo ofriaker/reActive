@@ -8,10 +8,27 @@ import {
   MDBCardText,
   MDBCardFooter,
 } from 'mdb-react-ui-kit';
+import { useDispatch } from "react-redux";
 import { Link } from "react-router-dom";
+import { addItem } from '../../store/reducers/cart';
+
 
 
 const Item = ({product}) => {
+  const dispatch = useDispatch();
+  
+  const onAddToCart = () => {
+    // console.log(product);
+    let productToCart = {
+      ...product,
+      flavour : product.flavours[0],
+      quantity : 1
+    };
+    console.log(productToCart);
+    dispatch(addItem(productToCart));
+  }
+
+
     return (
       <MDBCard style={{height:'530px'}}>
         <Link to='/product' state={product}> 
@@ -32,7 +49,7 @@ const Item = ({product}) => {
           </MDBCardBody>
           </Link>
           <MDBCardFooter>
-            <button className={classes.add}>Add to cart</button>
+          <button className={classes.add} onClick={onAddToCart}>Add to cart</button>
           </MDBCardFooter>
         </MDBCard> 
     );

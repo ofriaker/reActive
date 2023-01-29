@@ -1,8 +1,15 @@
 import './CartItem.css';
 import QuantityButton from '../Quantity/QuantityButton';
+import { useDispatch } from "react-redux";
+import { deleteItem } from '../../store/reducers/cart';
 
 
 const CartItem = ({item, index}) => {
+    const dispatch = useDispatch();
+
+    const onDeleteItem = () => {
+        dispatch(deleteItem(index));
+    }
     return (
         <div className="">
             <div className="row mt-2">
@@ -23,7 +30,7 @@ const CartItem = ({item, index}) => {
                 <div className='col-md-2'>
                     <div className='row'>
                         <h4 className=" col-md-6 text">{item.price * item.quantity}₪</h4>
-                        <button className="cancelBTn col-md-6">
+                        <button className="cancelBTn col-md-6" onClick={onDeleteItem}>
                             <i class="fa-solid fa-xmark"></i>
                         </button>
                     </div>

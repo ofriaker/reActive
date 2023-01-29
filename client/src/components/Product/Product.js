@@ -1,7 +1,7 @@
 import './Product.css';
 import Select from 'react-select';
 // import QuantityButton from '../Quantity/QuantityButton';
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import { addItem } from '../../store/reducers/cart';
 import { useLocation } from "react-router-dom";
 import { Link } from "react-router-dom";
@@ -26,8 +26,8 @@ const Product = () => {
         //not sure if needed;
         productToCart.quantity = 1;
         dispatch(addItem(productToCart));
-
     }
+    
     const StarRating = () => {
         return (
             <div className="star-rating">

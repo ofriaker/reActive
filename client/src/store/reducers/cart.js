@@ -38,6 +38,14 @@ export const cartSlice = createSlice({
             let newCart = [...state.cart];
             newCart[action.payload].quantity = newCart[action.payload].quantity - 1;
         },
+        deleteItem: (state, action) => {
+            let newCart = [...state.cart];
+            newCart.splice(action.payload, 1);
+            return {
+                ...state,
+                cart: newCart
+            };
+        },
         setLoading: (state, action) => {
             return { ...state, loading: action.payload };
         },
@@ -47,5 +55,5 @@ export const cartSlice = createSlice({
     },
 });
             
-export const { setCart, incQuantity, decQuantity, addItem, setLoading, setError } = cartSlice.actions;
+export const { setCart, incQuantity, decQuantity, addItem, deleteItem, setLoading, setError } = cartSlice.actions;
 export default cartSlice.reducer;
