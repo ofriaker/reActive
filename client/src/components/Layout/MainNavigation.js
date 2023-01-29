@@ -48,10 +48,11 @@ const MainNavigation = () => {
     
         <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
-            <a className='text-reset me-3' href="/cart">
+            <a className='text-reset me-3'>
+                    <Link to='/cart' style={{ color: '#333333' }}> 
               <span><i className='fas fa-shopping-cart'></i></span>
                     <span className='badge rounded-pill badge-notification bg-danger'>{cartItemsAmount}</span>
-            </a>
+                    </Link></a>
             <Link to='/cart' style={{color: '#333333'}}>My cart</Link>
           </div>
           { !loggin && (

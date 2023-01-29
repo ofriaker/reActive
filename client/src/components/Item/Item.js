@@ -18,13 +18,11 @@ const Item = ({product}) => {
   const dispatch = useDispatch();
   
   const onAddToCart = () => {
-    // console.log(product);
     let productToCart = {
       ...product,
       flavour : product.flavours[0],
       quantity : 1
     };
-    console.log(productToCart);
     dispatch(addItem(productToCart));
   }
 

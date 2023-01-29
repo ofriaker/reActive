@@ -2,7 +2,7 @@ import './Cart.css';
 import { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import CartItem from './CartItem';
-import { isLoading, selectCart } from '../../store/selectors/cart';
+import { selectCart } from '../../store/selectors/cart';
 
 const calculateTotalPrice = (Items) => {
     let prices = Items.map(item => item.price * item.quantity);
@@ -13,7 +13,6 @@ const calculateTotalPrice = (Items) => {
 const Cart = () => {
     const dispatch = useDispatch();
     let [totalPrice, setTotalPrice] = useState(0);
-    const loading = useSelector(isLoading);
     const cart = useSelector(selectCart);
     let isCartEmpty = (cart.length == 0);
     let cartItemsComponents = [];

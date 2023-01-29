@@ -23,11 +23,10 @@ const Product = () => {
     const onAddToCart = () => {
         let productToCart = item;
         productToCart.flavour = chosenFlavour;
-        //not sure if needed;
         productToCart.quantity = 1;
         dispatch(addItem(productToCart));
     }
-    
+
     const StarRating = () => {
         return (
             <div className="star-rating">
