@@ -1,6 +1,8 @@
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
+import { useSelector } from "react-redux";
+import { selectCart } from '../../store/selectors/cart';
 import React from 'react';
 import Catagory from '../Catagory/Catagory';
 import {
@@ -18,7 +20,13 @@ const MainNavigation = () => {
   const authCtx = useContext(AuthContext);
   const loggin = authCtx.isLoggedin;
 
-  
+  const cart = useSelector(selectCart);
+  let [cartItemsAmount, setCartItemsAmount] = useState(0);
+
+  useEffect(() => {
+    setCartItemsAmount(cart.length);
+  });
+
     return (
     <header>
     <div className='p-3 text-center bg-white border-bottom'>
@@ -42,7 +50,7 @@ const MainNavigation = () => {
           <div className='d-flex p-3'>
             <a className='text-reset me-3' href="/cart">
               <span><i className='fas fa-shopping-cart'></i></span>
-              <span className='badge rounded-pill badge-notification bg-danger'>4</span>
+                    <span className='badge rounded-pill badge-notification bg-danger'>{cartItemsAmount}</span>
             </a>
             <Link to='/cart' style={{color: '#333333'}}>My cart</Link>
           </div>
