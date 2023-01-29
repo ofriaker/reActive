@@ -3,7 +3,6 @@ import QuantityButton from '../Quantity/QuantityButton';
 
 
 const CartItem = ({item, index}) => {
-
     return (
         <div className="">
             <div className="row mt-2">
@@ -23,7 +22,7 @@ const CartItem = ({item, index}) => {
                 </div>
                 <div className='col-md-2'>
                     <div className='row'>
-                        <h4 className=" col-md-6 text">{item.price * item.quantity}$</h4>
+                        <h4 className=" col-md-6 text">{item.price * item.quantity}₪</h4>
                         <button className="cancelBTn col-md-6">
                             <i class="fa-solid fa-xmark"></i>
                         </button>

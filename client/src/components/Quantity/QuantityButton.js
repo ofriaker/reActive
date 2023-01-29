@@ -1,14 +1,12 @@
 import './QuantityButton.css';
 import { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { isLoading, selectCart } from '../../store/selectors/cart';
-import { setCart, incQuantity, decQuantity } from '../../store/reducers/cart';
+import { incQuantity, decQuantity } from '../../store/reducers/cart';
 
 const QuantityButton  = ({cartItem, index}) => {
 
     const dispatch = useDispatch();
     let [quantity, setQuantity] = useState(cartItem.quantity);
-        const cart = useSelector(selectCart);
 
 
     const [isMinusEnabled, setIsMinusEnabled] = useState(quantity>1);
@@ -22,9 +20,7 @@ const QuantityButton  = ({cartItem, index}) => {
         if (isMinusEnabled) {
             dispatch(decQuantity(index));
             if (quantity == 2) {
-                console.log(quantity, isMinusEnabled);
                 setIsMinusEnabled(false);
-                console.log(quantity, isMinusEnabled);
             }
         }
     }
