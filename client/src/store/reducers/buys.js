@@ -4,8 +4,6 @@ export const buysSlice = createSlice({
   name: "buys",
   initialState: {
     buys: [],
-    loading: true,
-    error: null,
   },
   reducers: {
     setBuys: (state, action) => {
