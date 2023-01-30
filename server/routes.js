@@ -21,6 +21,13 @@ router.get("/items/:name", async (req, res) => {
 	res.send(itemByname);
 })
 
+
+router.get("/users/:email", async (req, res) => {
+	const userByEmail = await User.find({email: req.params.email});
+    console.log(userByEmail);
+	res.send(userByEmail);
+})
+
 router.post("/users", jsonParser, async (req, res) => {
         console.log(req.body);
         User.create(req.body, (err,data) => {
