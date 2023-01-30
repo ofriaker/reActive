@@ -26,6 +26,7 @@ const enteredPassword = passwordInputRef.current.value;
 setIsLoading(true);
 
 let url ; 
+let mongoUrl;
 
 if ( isLogin){
 
@@ -34,6 +35,7 @@ if ( isLogin){
 }else{
 
   url =  'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDOvXq71xqny8GmJ9Rdd4tqh1PPDX5xc6Q' ; 
+  mongoUrl ='http://localhost:4000/api/users';
  
 }
 fetch (url ,
@@ -65,6 +67,26 @@ fetch (url ,
   }).catch (err => {
     alert (err.message);
   });
+
+  fetch(mongoUrl, {
+    method: 'POST',
+    body: JSON.stringify({
+        email: enteredEmail,
+    }),
+    headers:{
+      'Content-Type': 'application/json'
+    }}).then ( res => {
+      setIsLoading(false);
+      if(res.ok) {
+       return res.json();
+      }else{
+        return res.json ().then((data) => {
+         let errorMessage = 'Auth failed';
+      
+         throw new Error( errorMessage);
+        });
+      }
+    });
 }
 
   return (

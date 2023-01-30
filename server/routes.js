@@ -5,6 +5,7 @@ const Item = require('./models/item');
 const Buy = require("./models/buy");
 
 var bodyParser = require('body-parser');
+const User = require("./models/user");
 
 var jsonParser = bodyParser.json();
 
@@ -20,13 +21,13 @@ router.get("/items/:name", async (req, res) => {
 	res.send(itemByname);
 })
 
-// router.post("/cart", jsonParser, async (req, res) => {
-//     console.log(req.body);
-//     cartItem.create(req.body, (err,data) => {
-//         if(err) console.log(err)
-//         else res.send(data);
-//     })
-// })
+router.post("/users", jsonParser, async (req, res) => {
+        console.log(req.body);
+        User.create(req.body, (err,data) => {
+            if(err) console.log(err)
+            else res.send(data);
+        })
+})
 
 router.get("/buys/:userId", async (req, res) => {
 	const buys = await Buy.find({userId: req.params.userId});
