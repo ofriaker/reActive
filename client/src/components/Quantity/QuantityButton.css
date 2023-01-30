@@ -1,0 +1,36 @@
+.button_ {
+    position: relative;
+    width: 35px !important;
+    height: 35px !important;
+    background: #fff;
+    cursor: pointer;
+    border: 2px solid #008190;
+    border-radius: 5px;
+    --mdb-gutter-x: 0rem !important; 
+}
+
+.button_disabled {
+    position: relative;
+    width: 35px !important;
+    height: 35px !important;
+    background: #fff;
+    cursor: not-allowed !important;
+    border: 2px solid #333333;
+    border-radius: 5px;
+    --mdb-gutter-x: 0rem !important;
+}
+
+.button_:hover {
+    background-color: #008190;
+    transition: 0.2s;
+}
+
+.text_ {
+    text-align: center !important;
+    color: #333333 !important;
+    --mdb-gutter-x: 0rem !important;
+}
+
+.box_{
+    padding-left: 4%;
+}
