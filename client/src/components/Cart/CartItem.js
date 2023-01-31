@@ -14,7 +14,7 @@ const CartItem = ({item, index}) => {
         <div className="">
             <div className="row mt-2">
                 <div className='col-md-2'>
-                    <img className="smallImg" src={item.imgUrl} alt=""></img>
+                    <img className="cartItemImg" src={item.imgUrl} alt=""></img>
                 </div>
                 <div className='col-md-6'>
                     <div className='row mt-1'>

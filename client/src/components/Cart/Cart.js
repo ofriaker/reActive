@@ -1,8 +1,11 @@
 import './Cart.css';
 import { useEffect, useState } from 'react';
+import React, { useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
+import AuthContext from '../../store/auth-context';
 import CartItem from './CartItem';
 import { selectCart } from '../../store/selectors/cart';
+import { selectUser } from '../../store/selectors/users';
 
 const calculateTotalPrice = (Items) => {
     let prices = Items.map(item => item.price * item.quantity);
@@ -14,8 +17,11 @@ const Cart = () => {
     const dispatch = useDispatch();
     let [totalPrice, setTotalPrice] = useState(0);
     const cart = useSelector(selectCart);
+    // const user = useSelector(selectUser);
+    const authCtx = useContext(AuthContext);
     let isCartEmpty = (cart.length == 0);
     let cartItemsComponents = [];
+    const mongoUrl = 'http://localhost:4000/api/buys';
 
 
     useEffect(() => {
@@ -27,6 +33,45 @@ const Cart = () => {
             cartItemsComponents.push(<CartItem 
                 item={item} index={index}></CartItem>);
         });
+    }
+
+    const onCheckout = () => {   
+        if (!isCartEmpty) {
+            const buy = {};
+            buy.userId = authCtx.email;
+            buy.products = [];
+            cart.forEach((item) => {
+                buy.products.push({ 
+                    productId: item._id,
+                    quantity: item.quantity
+                })
+            });
+            buy.totalPrice = totalPrice;
+           console.log(JSON.stringify(buy));
+
+            fetch(mongoUrl, {
+                method: 'POST',
+                body: JSON.stringify({
+                    buy: buy,
+                }),
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            }).then(res => {
+                if (res.ok) {
+                    console.log(res);
+                    return res.json();
+                } else {
+                    return res.json().then((data) => {
+                        console.log(data);
+                        let errorMessage = 'Buy failed';
+                        throw new Error(errorMessage);
+                    });
+                }
+            });
+        } else {
+            console.log("nothing to buy here");
+        }
     }
 
     return (
@@ -56,7 +101,7 @@ const Cart = () => {
                     </div>
                     <div className='row mt-2'>
                         <i className='col-md-6'></i>
-                        <button className='col-md-5 button'>Checkout</button>
+                        <button className='col-md-5 button' onClick={onCheckout}>Checkout</button>
                     </div>
                 </div>
             </div>
