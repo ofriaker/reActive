@@ -4,7 +4,8 @@ import React, { useContext } from 'react';
 import { useDispatch, useSelector } from "react-redux";
 import AuthContext from '../../store/auth-context';
 import CartItem from './CartItem';
-import { selectCart } from '../../store/selectors/cart';
+import { selectCart} from '../../store/selectors/cart';
+import { setCart } from '../../store/reducers/cart';
 import { selectUser } from '../../store/selectors/users';
 
 const calculateTotalPrice = (Items) => {
@@ -37,40 +38,47 @@ const Cart = () => {
 
     const onCheckout = () => {   
         if (!isCartEmpty) {
-            const buy = {};
-            buy.userId = authCtx.email;
-            buy.products = [];
-            cart.forEach((item) => {
-                buy.products.push({ 
-                    productId: item._id,
-                    quantity: item.quantity
-                })
-            });
-            buy.totalPrice = totalPrice;
-           console.log(JSON.stringify(buy));
+            if (authCtx.isLoggedin) {
+                const buy = {};
+                buy.userId = authCtx.email;
+                buy.products = [];
+                cart.forEach((item) => {
+                    buy.products.push({
+                        productId: item._id,
+                        quantity: item.quantity
+                    })
+                });
+                buy.totalPrice = totalPrice;
+                console.log(JSON.stringify(buy));
 
-            fetch(mongoUrl, {
-                method: 'POST',
-                body: JSON.stringify({
-                    buy: buy,
-                }),
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }).then(res => {
-                if (res.ok) {
-                    console.log(res);
-                    return res.json();
-                } else {
-                    return res.json().then((data) => {
-                        console.log(data);
-                        let errorMessage = 'Buy failed';
-                        throw new Error(errorMessage);
-                    });
-                }
-            });
+                fetch(mongoUrl, {
+                    method: 'POST',
+                    body: JSON.stringify({
+                        buy: buy,
+                    }),
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                }).then(res => {
+                    if (res.ok) {
+                        console.log(res);
+                        dispatch(setCart([]));
+                        alert("Thanks for shopping at reActive!")
+                        return res.json();
+                    } else {
+                        return res.json().then((data) => {
+                            console.log(data);
+                            alert("Sorry, something went wrong :(")
+                            let errorMessage = 'Buy failed'
+                            throw new Error(errorMessage);
+                        });
+                    }
+                });
+            } else {
+                alert("You must login first");
+            }   
         } else {
-            console.log("nothing to buy here");
+            alert("Your cart is empty");
         }
     }
 
