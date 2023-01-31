@@ -30,7 +30,7 @@ router.get("/users/:email", async (req, res) => {
 
 router.post("/users", jsonParser, async (req, res) => {
     console.log(req.body.email);
-    await User.create(req.body.email, (err, data) => {
+    await User.create(req.body, (err, data) => {
         if (err) console.log(err)
         else res.send(data);
     })
