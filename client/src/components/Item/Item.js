@@ -8,26 +8,46 @@ import {
   MDBCardText,
   MDBCardFooter,
 } from 'mdb-react-ui-kit';
+import { useDispatch } from "react-redux";
+import { Link } from "react-router-dom";
+import { addItem } from '../../store/reducers/cart';
+
+
 
 const Item = ({product}) => {
+  const dispatch = useDispatch();
+  
+  const onAddToCart = () => {
+    let productToCart = {
+      ...product,
+      flavour : product.flavours[0],
+      quantity : 1
+    };
+    dispatch(addItem(productToCart));
+  }
+
+
     return (
       <MDBCard style={{height:'530px'}}>
-        <div className={classes.card}>
-          <MDBCardImage 
-            src={product.imgUrl}
-            alt='...'
-            position='top'>
-          </MDBCardImage>
-          </div>
+        <Link to='/product' state={product}> 
+          <div className={classes.card}>
+            <MDBCardImage 
+              src={product.imgUrl}
+              alt='...'
+              position='top'>
+              {/* <Link to='/prosuct' style={{ color: '#333333' }}></Link> */}
+            </MDBCardImage>
+            </div>
           <MDBCardBody>
             <MDBCardTitle>{product.name}</MDBCardTitle>
             <MDBCardText>
               {product.description}
-              <h4>{product.price}$<i className="fas fa-tag ms-1 p-1"></i></h4>
+              <h4 className='price'>{product.price}₪<i className="fas fa-tag ms-1 p-1"></i></h4>
             </MDBCardText>
           </MDBCardBody>
+          </Link>
           <MDBCardFooter>
-            <button className={classes.add}>Add to cart</button>
+          <button className={classes.add} onClick={onAddToCart}>Add to cart</button>
           </MDBCardFooter>
         </MDBCard> 
     );

@@ -1,17 +1,21 @@
 const mongoose = require('mongoose');
 const buySchema = new mongoose.Schema({
-
-    _id: {
-        type: String,
-        require: true
-    },
     userId: {
         type: String,
         require: true
     },
-    products: {
-        type: Array,
-    },
+    products: [{
+        productId: String,
+        quantity: Number
+    }],
+    totalPrice: {
+        type: String,
+        require: true
+    }
+    // _id: {
+    //     type: String,
+    //     require: true
+    // }
 })
 
 const Buy = mongoose.model('buys', buySchema);

@@ -12,11 +12,11 @@
     color: black;
 }
 
-h4 {
+.price {
     text-align: right;
 }
 
-h4 i {
+.price i {
 color: #008190;
 }
 
