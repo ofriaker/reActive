@@ -34,7 +34,7 @@ const MainNavigation = () => {
         <div className='row mt-2'>
           <div className='col-md-4 d-flex justify-content-center justify-content-md-start mb-3 mb-md-0'>
             <Link to='/' className='ms-md-2 mb-2'>
-              <img src="images/logo.jpg" height="60" />
+              <img src="images/logo.jpg" height="60" alt=''/>
             </Link>
           </div>
 
@@ -46,13 +46,14 @@ const MainNavigation = () => {
           </div>
 
     
-        <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
+        <div className="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
-            <a className='text-reset me-3'>
-                    <Link to='/cart' style={{ color: '#333333' }}> 
-              <span><i className='fas fa-shopping-cart'></i></span>
-                    <span className='badge rounded-pill badge-notification bg-danger'>{cartItemsAmount}</span>
-                    </Link></a>
+            <div className='text-reset me-3'>
+                <Link to='/cart' style={{ color: '#333333' }}> 
+                  <span><i className='fas fa-shopping-cart'></i></span>
+                  <span className='badge rounded-pill badge-notification bg-danger'>{cartItemsAmount}</span>
+                </Link>
+            </div>
             <Link to='/cart' style={{color: '#333333'}}>My cart</Link>
           </div>
           { !loggin && (
