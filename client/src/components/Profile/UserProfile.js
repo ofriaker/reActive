@@ -30,11 +30,12 @@ const UserProfile = () => {
 
     useEffect((async) => {
       dispatch(fetchUser(authCtx.email));
-    },[])
+    },[]);
     
     useEffect(()=> {
       buysTodata();
-    })
+    },[]);
+    
     console.log(user);
     console.log(buys);
 
