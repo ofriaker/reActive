@@ -1,3 +1,8 @@
+.textQ {
+    text-align: center !important;
+    color: #333333 !important;
+    --mdb-gutter-x: 0rem !important;
+}
 .button_ {
     position: relative;
     width: 35px !important;
@@ -25,11 +30,6 @@
     transition: 0.2s;
 }
 
-.text_ {
-    text-align: center !important;
-    color: #333333 !important;
-    --mdb-gutter-x: 0rem !important;
-}
 
 .box_{
     padding-left: 4%;
