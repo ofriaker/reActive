@@ -30,7 +30,7 @@ const itemSchema = new mongoose.Schema({
         type: String
     }],
     _id: {
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
         require: true,
     }
 

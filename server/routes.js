@@ -15,10 +15,10 @@ router.get('/items', async (req, res) => {
     res.send(items);
 })
 
-router.get("/items/:name", async (req, res) => {
-    const itemByname = await Item.find({ name: req.params.name });
-    console.log(itemByname);
-    res.send(itemByname);
+router.get('/items/:id', async (req, res) => {
+     const itemById = await Item.findById({_id:req.params.id});
+    
+     res.send(itemById);
 })
 
 

@@ -9,4 +9,5 @@ export default combineReducers({
   productsSlice: products,
   cartSlice: cart,
   userSlice: user,
+  buysSlice: buys,
 });
