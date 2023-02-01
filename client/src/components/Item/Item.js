@@ -28,7 +28,7 @@ const Item = ({product}) => {
 
 
     return (
-      <MDBCard style={{height:'530px'}}>
+      <MDBCard style={{height:'540px'}}>
         <Link to='/product' state={product}> 
           <div className={classes.card}>
             <MDBCardImage 
@@ -39,11 +39,12 @@ const Item = ({product}) => {
             </MDBCardImage>
             </div>
           <MDBCardBody>
-            <MDBCardTitle>{product.name}</MDBCardTitle>
-            <MDBCardText>
-              {product.description}
-              <h4 className='price'>{product.price}₪<i className="fas fa-tag ms-1 p-1"></i></h4>
+            <MDBCardTitle style={{height: '25px', fontSize:'18px'}}>{product.name}</MDBCardTitle>
+            <MDBCardText style={{color:'#333333', fontSize:'15px', height:'40px'}}>
+              {product.description}  
+                    
             </MDBCardText>
+            <h4 style={{textAlign:'right'}} ><i className="fas fa-tag ms-1 p-1" style={{color:'#008190'}}></i>{product.price}₪</h4>
           </MDBCardBody>
           </Link>
           <MDBCardFooter>
