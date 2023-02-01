@@ -14,28 +14,34 @@ import {
 import UserDetails from '../UserDetails/UserDetails';
 import { selectUser } from '../../store/selectors/users';
 import { fetchUser } from '../../store/middlewares/users';
+import axios from '../../utils/axios'
 
 
 const UserProfile = () => {
 
   const authCtx = useContext(AuthContext);
   const dispatch = useDispatch();
-  const buys = useSelector(selectBuys);
   const user = useSelector(selectUser);
+  const buys = useSelector(selectBuys);
   const [data, setData] = useState([]);
+ 
 
     useEffect(() => {
         dispatch(fetchAllBuys(authCtx.email));
     }, []);
 
-    useEffect((async) => {
-      dispatch(fetchUser(authCtx.email));
-    },[]);
-    
-    useEffect(()=> {
+    useEffect(() => {
       buysTodata();
+     
+    },[]);
+
+    useEffect(() => {
+      dispatch(fetchUser(authCtx.email));
+      
     },[]);
     
+   
+
     console.log(user);
     console.log(buys);
 
@@ -43,21 +49,19 @@ const UserProfile = () => {
       const data=[];
       var b;
       for(b of buys) {
-          var result={WheyProtein:0,Drinks:0,MilkProtein:0,VeganProtein:0,ProteinBars:0,NutButter:0};
+          var result={'WheyProtein':0,'Drinks':0,MilkProtein:0,VeganProtein:0,ProteinBars:0,NutButter:0};
           var p;
+          var product;
           for(p of b.products) {
             try {
-              const URL='http://localhost:4000/api/items/'+p.productName;
-                  const res = await fetch(URL);
-                  var product = await res.json(); 
+              let product = await (await axios("/items/"+p.productId)).data;
+              let category = product.category.replaceAll(" ","");
+              console.log(category);
+              result[category] += ((+product.price)* p.quantity); 
 
             } catch (error) {
               console.log(error);
-            } finally {
-              var category = product[0].category.replaceAll(" ","");
-                  console.log(category);
-                  result[category] += ((+product[0].price) * p.quantity);
-            }        
+            }      
           } 
           data.push(result);  
       } 
@@ -81,7 +85,7 @@ const UserProfile = () => {
         }
         
         <MDBCol size='6'>
-          <UserDetails buys={buys} user={user}/>
+          <UserDetails  user={user} buys={buys}/>
         </MDBCol>
 
         { (buys.lenght!=0) &&
