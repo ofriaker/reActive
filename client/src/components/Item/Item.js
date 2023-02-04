@@ -23,7 +23,9 @@ const Item = ({product}) => {
             <MDBCardTitle>{product.name}</MDBCardTitle>
             <MDBCardText>
               {product.description}
-              <h4>{product.price}$<i className="fas fa-tag ms-1 p-1"></i></h4>
+            </MDBCardText>
+            <MDBCardText className={classes.price}>
+              {product.price}$<i className="fas fa-tag ms-1 p-1"></i>
             </MDBCardText>
           </MDBCardBody>
           <MDBCardFooter>

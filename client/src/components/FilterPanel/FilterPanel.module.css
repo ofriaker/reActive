@@ -1,0 +1,27 @@
+.leftPanel {
+  width: 21vw;
+  float: left;
+  margin-left: 3vw;
+  margin-right: 2vw;
+}
+
+.scrollable {
+  overflow-y: scroll;
+  max-height: 40vh;
+  scrollbar-gutter: auto;
+  
+}
+
+.checkbox {
+  margin-right: 0.5vw;
+}
+
+.filterHeader {
+  font-size: 1.5em;
+  font-weight: extra-bold;
+}
+
+.filter {
+  margin-top: 1vh;
+  margin-bottom: 3vh;
+}

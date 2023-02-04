@@ -38,7 +38,7 @@ const MainNavigation = () => {
           </div>
 
     
-        <div class="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
+        <div className="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
             <a className='text-reset me-3' href="/cart">
               <span><i className='fas fa-shopping-cart'></i></span>

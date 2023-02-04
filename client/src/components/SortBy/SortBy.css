@@ -2,9 +2,8 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    height: 100px;
   }
-  
+
   .select-sort {
     padding: 10px;
     font-size: 16px;
