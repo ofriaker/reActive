@@ -26,8 +26,12 @@ const itemSchema = new mongoose.Schema({
         type: String,
         require: true
     },
-    flavours: {
-        type: [String]
+    flavours: [{
+        type: String
+    }],
+    _id: {
+        type: mongoose.Schema.Types.ObjectId,
+        require: true,
     }
 
 })

@@ -31,7 +31,7 @@ const StartingPageContent = () => {
       </div>
     </div>
     <div className='p-5 text-center bg-light' id="gallery">
-        <h1 className='mb-3'>Our best sellers</h1>
+        <h1 className='mb-3 text-center'>Our best sellers</h1>
     </div>
     <ItemsGallry products={products}></ItemsGallry>
     </section>

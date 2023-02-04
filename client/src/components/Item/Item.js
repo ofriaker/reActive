@@ -34,7 +34,5 @@ const Item = ({product}) => {
         </MDBCard> 
     );
   };
-
- 
-  
+	
   export default Item;

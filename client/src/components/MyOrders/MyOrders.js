@@ -19,6 +19,7 @@ const MyOrders = ({buys}) => {
                 <th>Total price</th>
                 </tr>
             </MDBTableHead>
+            {buys.length != 0 &&
             <MDBTableBody> 
                 {buys.map((buy, count) =>{
                     return(
@@ -32,6 +33,7 @@ const MyOrders = ({buys}) => {
                 })}
 
             </MDBTableBody>
+            }
             </MDBTable>
         </div>
       
