@@ -11,35 +11,43 @@ var jsonParser = bodyParser.json();
 
 router.get('/items', async (req, res) => {
     const items = await Item.find({});
-    console.log(items);
+    // console.log(items);
     res.send(items);
 })
 
-router.get("/items/:name", async (req, res) => {
-	const itemByname = await Item.find({name: req.params.name});
-    console.log(itemByname);
-	res.send(itemByname);
+router.get('/items/:id', async (req, res) => {
+     const itemById = await Item.findById({_id:req.params.id});
+    
+     res.send(itemById);
 })
 
 
 router.get("/users/:email", async (req, res) => {
-	const userByEmail = await User.find({email: req.params.email});
+    const userByEmail = await User.find({ email: req.params.email });
     console.log(userByEmail);
-	res.send(userByEmail);
+    res.send(userByEmail);
 })
 
 router.post("/users", jsonParser, async (req, res) => {
-        console.log(req.body);
-        User.create(req.body, (err,data) => {
-            if(err) console.log(err)
-            else res.send(data);
-        })
+    console.log(req.body.email);
+    await User.create(req.body, (err, data) => {
+        if (err) console.log(err)
+        else res.send(data);
+    })
+})
+
+router.post("/buys", jsonParser, async (req, res) => {
+    console.log(req.body.buy);
+    await Buy.create(req.body.buy, (err, data) => {
+        if (err) console.log(err)
+        else res.send(data);
+    })
 })
 
 router.get("/buys/:userId", async (req, res) => {
-	const buys = await Buy.find({userId: req.params.userId});
+    const buys = await Buy.find({ userId: req.params.userId });
     console.log(buys);
-	res.send(buys);
+    res.send(buys);
 })
 
 router.get('/items/flavours/:category', async (req, res) => {
