@@ -1,7 +1,19 @@
 import ItemsGallry from '../ItemsGallery/ItemsGallery';
 import classes from './StartingPageContent.module.css';
+import { useDispatch, useSelector } from "react-redux";
+import { fetchAllProducts } from '../../store/middlewares/products';
+import { selectProducts} from '../../store/selectors/products';
+import { useEffect } from "react";
+
 
 const StartingPageContent = () => {
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
+
+  useEffect(() => {
+    dispatch(fetchAllProducts());
+  }, []); 
+
   return (
     <section className={classes.starting}>
       <div className='bg-image shadow-1-strong'>
@@ -21,7 +33,7 @@ const StartingPageContent = () => {
     <div className='p-5 text-center bg-light' id="gallery">
         <h1 className='mb-3 text-center'>Our best sellers</h1>
     </div>
-    <ItemsGallry></ItemsGallry>
+    <ItemsGallry products={products}></ItemsGallry>
     </section>
   );
 };

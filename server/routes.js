@@ -50,4 +50,26 @@ router.get("/buys/:userId", async (req, res) => {
     res.send(buys);
 })
 
+router.get('/items/flavours/:category', async (req, res) => {
+    const category = req.params.category;
+    const query = [
+      {
+        $match: {
+          category: category
+        }
+      },
+      {
+        $unwind: "$flavours"
+      },
+      {
+        $group: {
+          _id: "$flavours"
+        }
+      }
+    ];
+
+    const flavours = await Item.aggregate(query);
+    res.send(flavours);
+});
+
 module.exports = router;

@@ -13,7 +13,12 @@
 }
 
 .price {
-    color: #008190;
+    text-align: left;
+    font-size: 1.4em;
+}
+
+.price i {
+color: #008190;
 }
 
 

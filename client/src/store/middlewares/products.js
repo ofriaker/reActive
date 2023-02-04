@@ -20,4 +20,13 @@ export const fetchAllProducts = () => async (dispatch) => {
   }
 };
 
+export const fetchAllAvailableFlavoursByCategory = async (category) => {
+  try {
+    const response = await axios("/items/flavours/" + category);
+    return await (response.data) ?? [];
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 export * from "./products";
