@@ -5,6 +5,7 @@ import classes from './AuthForm.module.css';
 
 const AuthForm = () => {
 
+  const wsServerURL = 'ws://localhost:4001';
   const emailInputRef = useRef();
   const passwordInputRef = useRef(); 
   const history = useNavigate();
@@ -12,9 +13,36 @@ const AuthForm = () => {
   const [isLogin, setIsLogin] = useState(true);
   const [isLoading, setIsLoading] = useState(false);
 
+  const notifyUserLoggedIn = () => {
+    const newSocket = new WebSocket(wsServerURL);
+
+    newSocket.onopen = () => {
+      //console.log('WebSocket connected');
+
+      // send a message to the server indicating that a new client has connected
+      newSocket.send(JSON.stringify({ type: 'user-logged-in' }));
+    };
+
+    newSocket.onerror = (error) => {
+      console.error('WebSocket error', error);
+    };
+
+    return () => {
+      newSocket.close();
+    };
+  };
+
+  const handleLogout = (socket) => {
+    if (socket && socket.readyState === WebSocket.OPEN) {
+      // close the WebSocket connection to the server
+      socket.close();
+    }
+  }
+
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
   };
+
 const submitHandler = (event) =>{
   event.preventDefault();
 
@@ -52,7 +80,8 @@ fetch (url ,
   }).then ( res => {
     setIsLoading(false);
     if(res.ok) {
-     return res.json();
+      notifyUserLoggedIn();
+      return res.json();
     }else{
       return res.json ().then((data) => {
        let errorMessage = 'Auth failed';
@@ -78,7 +107,8 @@ fetch (url ,
     }}).then ( res => {
       setIsLoading(false);
       if(res.ok) {
-       return res.json();
+        notifyUserLoggedIn();
+        return res.json();
       }else{
         return res.json ().then((data) => {
          let errorMessage = 'Auth failed';

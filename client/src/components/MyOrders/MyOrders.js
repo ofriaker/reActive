@@ -8,8 +8,8 @@ const MyOrders = ({buys}) => {
     const count =1;
 
     return (
-        <div className='m-5 p-3' id="myOrders">
-            <h2 className='align-items-center justify-content-center text-center mt-3'>My Orders</h2>
+        <div className='m-1 p-3' id="myOrders">
+            <h2 className='align-items-center justify-content-center text-center mt-1'>My Orders</h2>
             <MDBTable>
             <MDBTableHead>
                 <tr>
@@ -23,7 +23,7 @@ const MyOrders = ({buys}) => {
             <MDBTableBody> 
                 {buys.map((buy, count) =>{
                     return(
-                        <tr>
+                        <tr key={count++} >
                         <td>{count++}</td>
                         <td>{buy.userId}</td>
                         <td>{buy.products.length}</td>

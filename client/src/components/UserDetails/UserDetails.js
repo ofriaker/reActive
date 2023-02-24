@@ -16,7 +16,7 @@ const UserDetails = ({ user, buys }) => {
   const dispatch = useDispatch();
   
  useEffect(() => {
-  console.log(user);
+ // console.log(user);
   if(user.length!=0) {
     setName(user[0].userName);
     setAddress(user[0].address);
@@ -72,75 +72,67 @@ const UserDetails = ({ user, buys }) => {
     setMaxQuantity(m);
   }
 
-    return (
-        <section className="w-100">
-          {(user.length!=0) && 
-  <div className="py-5 w-100">
-    <div className="row d-flex justify-content-center align-items-center">
-      <div className="col-md-12 col-lg-6">
+  return (
+    <section  >
+      {(user.length!=0) && 
+        <div>
+          <div className="row d-flex justify-content-center align-items-center">
+            <div className="col-lg-8">
+              <div className="card " style={{borderRadius: 15}}>
+                  <div className="d-flex justify-content-end ">
+                    { isEditing ? 
+                    (<button type="button" href="#" onClick={handleSaveClick}>
+                      <i className='fa-solid fa-circle-check h4 m-2 p-2' style={{color:'green'}}></i>
+                      </button>) :
+                      (<button type="button" href="#" onClick={handleEditClick}>
+                        <i className='fas fa-edit h5 m-2 p-2' style={{color:'black'}}></i>
+                      </button>)}
+                  </div>
+                <div className="card-body text-center">
+                  <span>Personal Details</span>
+                  <div className="mb-4">
+                    <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
+                      className="rounded-circle img-fluid " style={{width: '180px'}}/>
+                  </div>
+                  <p className="text-muted mb-2">Email <span className="mx-2">|</span> <a
+                      href="#!"></a>{user[0].email}</p>
 
-        <div className="card w-100" style={{borderRadius: 15}}>
-            <div className="d-flex justify-content-end ">
-              { isEditing ? 
-              (<button type="button" href="#" onClick={handleSaveClick}>
-                <i className='fa-solid fa-circle-check h4 m-2 p-2' style={{color:'green'}}></i>
-                </button>) :
-                (<button type="button" href="#" onClick={handleEditClick}>
-                  <i className='fas fa-edit h5 m-2 p-2' style={{color:'black'}}></i>
-                </button>)}
-            </div>
-          <div className="card-body text-center">
-            <span>Personal Details</span>
-            <div className="mb-4">
-              <img src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava2-bg.webp"
-                className="rounded-circle img-fluid " style={{width: '180px'}}/>
-            </div>
-            <p className="text-muted mb-2">Email <span className="mx-2">|</span> <a
-                href="#!"></a>{user[0].email}</p>
-
-                <div className={classes.formRow}>
-                <p className="mb-2 ">Name <span className="mx-2">|</span> <a
-                href="#!"></a></p>
-                  { isEditing ? (<input type="text" id='name' className={classes.inputBox} 
-                  value={name} ref = {nameInputRef} onChange={handleNameChange} />)
-                  : (<div> {user[0].userName}</div>) }
+                      <div className={classes.formRow}>
+                      <p className="mb-2 ">Name <span className="mx-2">|</span> <a
+                      href="#!"></a></p>
+                        { isEditing ? (<input type="text" id='name' className={classes.inputBox} 
+                        value={name} ref = {nameInputRef} onChange={handleNameChange} />)
+                        : (<div> {user[0].userName}</div>) }
+                      </div>
+                  
+                  <div className={classes.formRow}>
+                    <p className="mb-2 ">Address <span className="mx-2">|</span></p>
+                    { isEditing ? 
+                      (<input type="text" id='address' className={classes.inputBox} 
+                             value={address} ref={addressInputRef} onChange={handleAddressChange}/>)
+                      : (<div> {user[0].address}</div>) }
+                  </div>
+                  <div className="d-flex justify-content-between text-center mt-4 mb-2">
+                    <div>
+                      <p className="mb-2 h5">{maxQuantity}</p>
+                      <p className="text-muted mb-0">Max products in order</p>
+                    </div>
+                    <div className="px-3">
+                      <p className="mb-2 h5">{max}</p>
+                      <p className="text-muted mb-0">Max order's price</p>
+                    </div>
+                    <div>
+                      <p className="mb-2 h5">{buys.length}</p>
+                      <p className="text-muted mb-0">Total Orders</p>
+                    </div>
+                  </div>
                 </div>
-            
-            <div className={classes.formRow}>
-            <p className="mb-2 ">Address <span className="mx-2">|</span></p>
-                  { isEditing ? (<input type="text" id='address' className={classes.inputBox} 
-                  value={address} ref={addressInputRef} onChange={handleAddressChange}/>)
-                  : (<div> {user[0].address}</div>) }
-                </div>
-
-            {/* <button type="button" className="btn btn-primary btn-rounded btn-lg p-2" href="#">
-              My Orders
-            </button> */}
-            <div className="d-flex justify-content-between text-center mt-4 mb-2">
-              <div>
-                <p className="mb-2 h5">{maxQuantity}</p>
-                <p className="text-muted mb-0">Max products in order</p>
-              </div>
-              <div className="px-3">
-                <p className="mb-2 h5">{max}</p>
-                <p className="text-muted mb-0">Max order's price</p>
-              </div>
-              <div>
-                <p className="mb-2 h5">{buys.length}</p>
-                <p className="text-muted mb-0">Total Orders</p>
               </div>
             </div>
           </div>
         </div>
-
-      </div>
-    </div>
-  </div>
-}
-</section>
-
-     
-    );
+      }
+</section>);
 };
 
-  export default UserDetails;
+export default UserDetails;

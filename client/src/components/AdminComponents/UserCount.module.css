@@ -1,0 +1,20 @@
+.card {
+ 
+    height: 20vh;
+    background-color:  lightgreen !important;
+}
+
+.cardText {
+    text-align: center;
+    display: 'flex';
+    flex-Direction: 'row';
+    justify-content: space-between;
+}
+
+
+.cardBody {
+    display: 'flex';
+    justify-Content: 'center';
+    flex-Direction: 'column';
+    
+}
