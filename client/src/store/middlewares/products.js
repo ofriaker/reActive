@@ -13,7 +13,7 @@ export const fetchAllProducts = () => async (dispatch) => {
     products = (await (await axios("/items")).data) ?? [];
   } catch (err) {
     dispatch(setError(err));
-    console.log(err);
+    // console.log(err);
   } finally {
     dispatch(setProducts(products));
     dispatch(setLoading(false));

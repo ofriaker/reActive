@@ -14,4 +14,16 @@ export const fetchUser = (email) => async (dispatch) => {
   }
 };
 
+export const updateUser = (userDetails) => async (dispatch) => {
+  let user = [];
+  try {
+    const response = (await (await axios.put("/users/"+userDetails.email, userDetails)).data ?? []);
+    user.push(response);
+  } catch (err) {
+    console.log(err);
+  } finally {
+    dispatch(setUser(user));
+  }
+};
+
 export * from "./users";

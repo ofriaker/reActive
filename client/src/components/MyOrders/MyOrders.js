@@ -4,7 +4,7 @@ import { MDBTable, MDBTableBody, MDBTableHead } from 'mdb-react-ui-kit';
 
 
 const MyOrders = ({buys}) => {
-    console.log(buys);
+   // console.log(buys);
     const count =1;
 
     return (

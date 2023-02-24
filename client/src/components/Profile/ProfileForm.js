@@ -29,7 +29,7 @@ const ProfileForm = () => {
       }
     }
     ).then(res => {
-      console.log("password changed");
+      // console.log("password changed");
       history.replace('/');
     })
   }
