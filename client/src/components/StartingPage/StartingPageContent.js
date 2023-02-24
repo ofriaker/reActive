@@ -1,7 +1,7 @@
 import ItemsGallry from '../ItemsGallery/ItemsGallery';
 import classes from './StartingPageContent.module.css';
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts } from '../../store/middlewares/products';
+import { fetchAllProducts, fetchBestSellers } from '../../store/middlewares/products';
 import { selectProducts} from '../../store/selectors/products';
 import { useEffect } from "react";
 
@@ -11,7 +11,7 @@ const StartingPageContent = () => {
   const products = useSelector(selectProducts);
 
   useEffect(() => {
-    dispatch(fetchAllProducts());
+    dispatch(fetchBestSellers());
   }, []); 
 
   return (
