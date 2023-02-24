@@ -59,7 +59,7 @@ const Bars = ({buys}) => {
     <Bar dataKey="MilkProtein" stackId="a" fill="#BD1D61" />
     <Bar dataKey="WheyProtein" stackId="a" fill="#1494A1" />
     <Bar dataKey="VeganProtein" stackId="a" fill="#233078" />
-    <Bar dataKey="ProteinbBars" stackId="a" fill="#727E74" />
+    <Bar dataKey="ProteinBars" stackId="a" fill="#727E74" />
     <Bar dataKey="NutButter" stackId="a" fill="#A0EAE0" />
     <Bar dataKey="Drinks" stackId="a" fill="pink" />
   </BarChart>

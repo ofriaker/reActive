@@ -24,17 +24,20 @@ const Item = ({ product }) => {
       quantity: 1
     };
     dispatch(addItem(productToCart));
+    alert(product.name + " added to cart");
   }
 
 
   return (
     <MDBCard style={{ height: '530px' }}>
       <div className={classes.card}>
+        <Link to='/product' state={product}> 
         <MDBCardImage
           src={product.imgUrl}
           alt='...'
           position='top'>
         </MDBCardImage>
+        </Link>
       </div>
       <MDBCardBody>
         <MDBCardTitle>{product.name}</MDBCardTitle>
@@ -47,6 +50,7 @@ const Item = ({ product }) => {
       </MDBCardBody>
       <MDBCardFooter>
         <button className={classes.add} onClick={onAddToCart}>Add to cart</button>
+        
       </MDBCardFooter>
     </MDBCard>
   );

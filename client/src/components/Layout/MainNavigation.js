@@ -1,30 +1,30 @@
 import { useContext } from 'react';
 import AuthContext from '../../store/auth-context';
 import { useEffect, useState } from 'react';
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { selectCart } from '../../store/selectors/cart';
 import React from 'react';
-import Catagory from '../Catagory/Catagory';
 import {
   Route,
   Link,
 } from "react-router-dom";
-import { Routes } from "react-router";
-
-
-
+import SearchFilter from '../SearchFilter/SearchFilter';
+import { fetchAllProducts } from '../../store/middlewares/products';
+import { selectProducts} from '../../store/selectors/products';
 
 
 const MainNavigation = () => {
 
   const authCtx = useContext(AuthContext);
   const loggin = authCtx.isLoggedin;
-
+  const dispatch = useDispatch();
+  const products = useSelector(selectProducts);
   const cart = useSelector(selectCart);
   let [cartItemsAmount, setCartItemsAmount] = useState(0);
 
   useEffect(() => {
     setCartItemsAmount(cart.length);
+    dispatch(fetchAllProducts());
   });
 
     return (
@@ -38,14 +38,7 @@ const MainNavigation = () => {
             </Link>
           </div>
 
-          <div className='col-md-4 mt-3'>
-          <form className='d-flex input-group w-auto my-automb-3 mb-md-0'>
-            <input type="search" className='form-control rounded' placeholder="Search in store"/>
-            <span className='input-group-text border-0 d-none d-lg-flex'><i className='fas fa-search'></i></span>
-          </form>
-          </div>
-
-    
+        <SearchFilter products={products}/>
         <div className="d-flex flex-row col-md-4 justify-content-center align-items-center mt-1 " >
           <div className='d-flex p-3'>
             <div className='text-reset me-3'>

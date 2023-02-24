@@ -29,4 +29,23 @@ export const fetchAllAvailableFlavoursByCategory = async (category) => {
   }
 };
 
+export const fetchBestSellers = () => async (dispatch) => {
+  let products = [];
+  let bestSellers = [];
+  try {
+    dispatch(setLoading(true));
+    products = (await (await axios("/items")).data) ?? [];
+    for (let i = 0; i < 16; i++) {
+      bestSellers.push(products[i])
+    }
+    console.log(bestSellers);
+  } catch (err) {
+    dispatch(setError(err));
+    // console.log(err);
+  } finally {
+    dispatch(setProducts(bestSellers));
+    dispatch(setLoading(false));
+  }
+};
+
 export * from "./products";
