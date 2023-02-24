@@ -1,5 +1,5 @@
 import classes from './UserProfile.module.css';
-import React, { useContext }  from 'react';
+import React, { useContext, Link}  from 'react';
 import Bars from '../Bars/Bars';
 import AuthContext from '../../store/auth-context';
 import { selectBuys } from '../../store/selectors/buys';
@@ -7,13 +7,15 @@ import { fetchAllBuys } from '../../store/middlewares/buys';
 import { useDispatch, useSelector } from 'react-redux';
 import { useEffect, useState } from 'react';
 import MyOrders from '../MyOrders/MyOrders';
-import { MDBCol, MDBContainer, MDBRow } from 'mdb-react-ui-kit';
+import { MDBCol, MDBContainer, MDBRow, MDBBtn } from 'mdb-react-ui-kit';
 import UserDetails from '../UserDetails/UserDetails';
 import { selectUser } from '../../store/selectors/users';
 import { fetchUser } from '../../store/middlewares/users';
 import UserCount from '../AdminComponents/UserCount';
+import { useNavigate } from "react-router-dom";
 
-const UserProfile = () => {
+
+const UserProfile = (props) => {
 
   const authCtx = useContext(AuthContext);
   const dispatch = useDispatch();
@@ -21,6 +23,7 @@ const UserProfile = () => {
   const buys = useSelector(selectBuys);
   const [userCount, setUserCount] = useState();
   const [userIsAdmin, setUserIsAdmin] = useState(false);
+  const navigate = useNavigate();
 
   useEffect(() => {
       dispatch(fetchAllBuys(authCtx.email));
@@ -59,12 +62,23 @@ const UserProfile = () => {
 
   }, []);
 
+  const handleLogout = () => {
+    authCtx.logout();
+    navigate("/");
+       
+  };
+
   return (
     <section className={classes.header}>
       <div className='border-bottom'>
         <header>
+            <div style={{ display: "flex", justifyContent: "flex-end" }}>
+             <MDBBtn style={{ position: "absolute", right: '10%', backgroundColor:"#008190"}} className='mt-2' onClick={handleLogout}>Logout</MDBBtn>
+            </div>
           <h1 className='pb-3 title '>My Account</h1>
             <span className='title-welcome'>Welcome { authCtx.email }</span>
+            
+            
         </header>
       </div>
       <MDBContainer fluid>

@@ -26,6 +26,7 @@ const Item = ({ product }) => {
     dispatch(addItem(productToCart));
     alert(product.name + " added to cart");
   }
+  
 
 
   return (
