@@ -1,19 +1,28 @@
 import { useEffect, useState, useRef } from 'react';
 import buys from '../../store/reducers/buys';
 import classes from './UserDetails.module.css';
-import { fetchUser, updateUser } from '../../store/middlewares/users';
-import { useDispatch, useSelector } from 'react-redux';
+import { updateUser } from '../../store/middlewares/users';
+import { useDispatch } from 'react-redux';
 
 const UserDetails = ({ user, buys }) => {
 
   const [max, setMax] = useState(0);
-  const [name, setName] = useState([]);
-  const [address, setAddress] = useState([]);
+  const [name, setName] = useState();
+  const [address, setAddress] = useState();
   const [isEditing, setIsEditing] = useState(false);
   const nameInputRef = useRef();
   const addressInputRef = useRef(); 
   const dispatch = useDispatch();
   
+ useEffect(() => {
+  console.log(user);
+  if(user.length!=0) {
+    setName(user[0].userName);
+    setAddress(user[0].address);
+  }
+ }, [user]);
+
+ 
   const handleEditClick = () => {
     setIsEditing(true);
   }
@@ -31,6 +40,7 @@ const UserDetails = ({ user, buys }) => {
     dispatch(updateUser(userDetails));
     setIsEditing(false);
   }
+  
   const handleNameChange = (e) => {
     setName(e.target.value);
   };
@@ -38,12 +48,6 @@ const UserDetails = ({ user, buys }) => {
   const handleAddressChange = (e) => {
     setAddress(e.target.value);
   };
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // TODO: Handle form submission
-  };
-
 
   const maxTotalPrice = () => {
     const m = 0;
@@ -85,14 +89,14 @@ const UserDetails = ({ user, buys }) => {
                 <p className="mb-2 ">Name <span className="mx-2">|</span> <a
                 href="#!"></a></p>
                   { isEditing ? (<input type="text" id='name' className={classes.inputBox} 
-                  value={user[0].userName} ref = {nameInputRef} onChange={handleNameChange} />)
+                  value={name} ref = {nameInputRef} onChange={handleNameChange} />)
                   : (<div> {user[0].userName}</div>) }
                 </div>
             
             <div className={classes.formRow}>
             <p className="mb-2 ">Address <span className="mx-2">|</span></p>
                   { isEditing ? (<input type="text" id='address' className={classes.inputBox} 
-                  value={user[0].address} ref={addressInputRef} onChange={handleAddressChange}/>)
+                  value={address} ref={addressInputRef} onChange={handleAddressChange}/>)
                   : (<div> {user[0].address}</div>) }
                 </div>
 
