@@ -29,6 +29,7 @@ const Item = ({ product }) => {
 
   return (
     <MDBCard style={{ height: '530px' }}>
+      <Link to='/product' state={product}> 
       <div className={classes.card}>
         <MDBCardImage
           src={product.imgUrl}
@@ -45,6 +46,7 @@ const Item = ({ product }) => {
           {product.price}$<i className="fas fa-tag ms-1 p-1"></i>
         </MDBCardText>
       </MDBCardBody>
+      </Link>
       <MDBCardFooter>
         <button className={classes.add} onClick={onAddToCart}>Add to cart</button>
       </MDBCardFooter>
