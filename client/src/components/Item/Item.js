@@ -26,6 +26,7 @@ const Item = ({ product }) => {
     dispatch(addItem(productToCart));
     alert(product.name + " added to cart");
   }
+  
 
 
   return (
@@ -45,7 +46,7 @@ const Item = ({ product }) => {
           {product.description}
         </MDBCardText>
         <MDBCardText className={classes.price}>
-          {product.price}$<i className="fas fa-tag ms-1 p-1"></i>
+          {product.price}₪<i className="fas fa-tag ms-1 p-1"></i>
         </MDBCardText>
       </MDBCardBody>
       <MDBCardFooter>
