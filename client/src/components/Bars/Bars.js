@@ -12,8 +12,7 @@ const Bars = ({buys}) => {
       buysTodata();
     }
    
-   
-  },[data]);
+  },[buys]);
 
   const buysTodata = async () => {
     const data=[];
@@ -47,7 +46,7 @@ const Bars = ({buys}) => {
     margin={{
       top: 20,
       right: 10,
-      left: 50,
+      left: 10,
       bottom: 5
     }}
     >
