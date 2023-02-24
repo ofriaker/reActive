@@ -24,6 +24,7 @@ const Item = ({ product }) => {
       quantity: 1
     };
     dispatch(addItem(productToCart));
+    alert(product.name + " added to cart");
   }
 
 
@@ -49,6 +50,7 @@ const Item = ({ product }) => {
       </MDBCardBody>
       <MDBCardFooter>
         <button className={classes.add} onClick={onAddToCart}>Add to cart</button>
+        
       </MDBCardFooter>
     </MDBCard>
   );
