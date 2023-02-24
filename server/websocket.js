@@ -41,13 +41,10 @@ module.exports = (server) => {
             });
       });
 
-        socket.on('close', () => {
+    socket.on('close', () => {
         console.log('Client disconnected');
-        if (usersCount > 0) {
-            usersCount--;
-            }
-        });
-  });
+    });
+});
 
   wss.server = server.listen(4001, () => {
     console.log('WebSocket server listening on port 4001');
