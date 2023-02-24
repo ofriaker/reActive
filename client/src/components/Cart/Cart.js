@@ -49,7 +49,7 @@ const Cart = () => {
                     })
                 });
                 buy.totalPrice = totalPrice;
-                console.log(JSON.stringify(buy));
+               // console.log(JSON.stringify(buy));
 
                 fetch(mongoUrl, {
                     method: 'POST',
@@ -61,13 +61,13 @@ const Cart = () => {
                     }
                 }).then(res => {
                     if (res.ok) {
-                        console.log(res);
+                       // console.log(res);
                         dispatch(setCart([]));
                         alert("Thanks for shopping at reActive!")
                         return res.json();
                     } else {
                         return res.json().then((data) => {
-                            console.log(data);
+                          //  console.log(data);
                             alert("Sorry, something went wrong :(")
                             let errorMessage = 'Buy failed'
                             throw new Error(errorMessage);

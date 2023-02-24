@@ -61,7 +61,7 @@ fetch (url ,
       });
     }
   }).then( (data) => {
-    console.log(data);
+    //console.log(data);
     authCtx.login (data.idToken, data.email);
     history('/');
   }).catch (err => {
@@ -91,7 +91,7 @@ fetch (url ,
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? 'Cotumer Login' : 'Sign Up'}</h1>
+      <h1>{isLogin ? 'Costumer Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor='email'>Email</label>

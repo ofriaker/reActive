@@ -24,6 +24,7 @@ const UserProfile = () => {
   const user = useSelector(selectUser);
   const buys = useSelector(selectBuys);
   const [data, setData] = useState([]);
+  
  
 
     useEffect(() => {
@@ -40,10 +41,10 @@ const UserProfile = () => {
       
     },[]);
     
-   
+    
 
-    console.log(user);
-    console.log(buys);
+     //console.log(user);
+    // console.log(buys);
 
     const buysTodata = async () => {
       const data=[];
@@ -56,25 +57,25 @@ const UserProfile = () => {
             try {
               let product = await (await axios("/items/"+p.productId)).data;
               let category = product.category.replaceAll(" ","");
-              console.log(category);
+              // console.log(category);
               result[category] += ((+product.price)* p.quantity); 
 
             } catch (error) {
-              console.log(error);
+              // console.log(error);
             }      
           } 
           data.push(result);  
       } 
       setData(data);
-      console.log(data);
+      // console.log(data);
   }
 
 
   return (
-    <section className={classes.profile}>
-      <header className='border-bottom d-flex'>
-      <h1 className='pb-3'>My Account</h1>
-      <h1>{authCtx.email}</h1>
+    <section className={classes.header}>
+      <header className='border-bottom'>
+      <h1 className='pb-3 title '>My Account</h1>
+      <span className='title-welcome'>Welcome { authCtx.email }</span>
       </header>
       <MDBContainer fluid>
       <MDBRow>

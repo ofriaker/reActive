@@ -7,9 +7,9 @@ export const fetchAllBuys = (email) => async (dispatch) => {
   let buys = [];
   try {
     buys = (await (await axios("/buys/"+email)).data ?? []);
-    console.log(buys);
+    // console.log(buys);
   } catch (err) {
-    console.log(err);
+    // console.log(err);
   } finally {
     dispatch(setBuys(buys));
   }

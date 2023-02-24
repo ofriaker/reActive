@@ -1,0 +1,15 @@
+.formRow {
+    display: flex;
+    flex-direction: row;
+    justify-content: center
+   
+}
+
+.saveButton {
+    color: #008190;
+}
+
+.inputBox {
+    width: 10vw;
+    height: 4vh;
+  }

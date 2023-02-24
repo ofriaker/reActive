@@ -28,7 +28,24 @@ router.get("/users/:email", async (req, res) => {
     res.send(userByEmail);
 })
 
+router.put('/users/:email',jsonParser, async (req, res) => {
+  const { userName, address } = req.body;
+  const filter = { email: req.params.email };
+  const update = { $set: { userName, address } };
+  const options = { new: true };
+  try {
+    await User.findOneAndUpdate(filter, update, options, (err, data) => {
+        if (err) console.log(err)
+        else res.send(data);
+    })
+ } catch (err) {
+    console.log(err);
+ }
+});
+
+
 router.post("/users", jsonParser, async (req, res) => {
+  
     console.log(req.body.email);
     await User.create(req.body, (err, data) => {
         if (err) console.log(err)

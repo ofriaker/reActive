@@ -22,7 +22,7 @@ const QuantityButton  = ({cartItem, index}) => {
     }
 
     const onMinusHandler = () => {
-        console.log(quantity);
+        // console.log(quantity);
         if (isMinusEnabled) {
             dispatch(decQuantity(index));
             if (quantity === 2) {
