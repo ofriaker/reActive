@@ -7,6 +7,7 @@ import { useDispatch } from 'react-redux';
 const UserDetails = ({ user, buys }) => {
 
   const [max, setMax] = useState(0);
+  const [maxQuantity, setMaxQuantity] = useState(0);
   const [name, setName] = useState();
   const [address, setAddress] = useState();
   const [isEditing, setIsEditing] = useState(false);
@@ -20,6 +21,8 @@ const UserDetails = ({ user, buys }) => {
     setName(user[0].userName);
     setAddress(user[0].address);
   }
+  maxTotalPrice();
+  maxProductsInOrder();
  }, [user]);
 
  
@@ -50,15 +53,25 @@ const UserDetails = ({ user, buys }) => {
   };
 
   const maxTotalPrice = () => {
-    const m = 0;
+    var m = 0;
     for(var b of buys) {
       if(b.totalPrice > m) {
         m = b.totalPrice;
       }
     }
     setMax(m);
-
   }
+
+  const maxProductsInOrder = () => {
+    var m = 0;
+    for(var b of buys) {
+      if(b.products.length > m) {
+        m = b.products.length;
+      }
+    }
+    setMaxQuantity(m);
+  }
+
     return (
         <section className="w-100">
           {(user.length!=0) && 
@@ -100,13 +113,13 @@ const UserDetails = ({ user, buys }) => {
                   : (<div> {user[0].address}</div>) }
                 </div>
 
-            <button type="button" className="btn btn-primary btn-rounded btn-lg p-2" href="#">
+            {/* <button type="button" className="btn btn-primary btn-rounded btn-lg p-2" href="#">
               My Orders
-            </button>
+            </button> */}
             <div className="d-flex justify-content-between text-center mt-4 mb-2">
               <div>
-                <p className="mb-2 h5">8471</p>
-                <p className="text-muted mb-0">Wallets Balance</p>
+                <p className="mb-2 h5">{maxQuantity}</p>
+                <p className="text-muted mb-0">Max products in order</p>
               </div>
               <div className="px-3">
                 <p className="mb-2 h5">{max}</p>

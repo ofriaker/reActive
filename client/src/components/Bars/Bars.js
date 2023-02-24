@@ -1,10 +1,43 @@
 import React  from 'react';
-import { BarChart, Bar, Cell, XAxis, YAxis, CartesianGrid, Tooltip, Legend, ResponsiveContainer } from 'recharts';
+import { useEffect, useState, useRef } from 'react';
+import axios from '../../utils/axios'
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, Legend } from 'recharts';
 
 
-const Bars = ({data}) => {
+const Bars = ({buys}) => {
+  const [data, setData] = useState([]);
+  
+  useEffect(() => {
+    if(buys.lenght!=0) {
+      buysTodata();
+    }
+   
+   
+  },[data]);
+
+  const buysTodata = async () => {
+    const data=[];
+    var b;
+    for(b of buys) {
+        var result={WheyProtein:0,Drinks:0,MilkProtein:0,VeganProtein:0,ProteinBars:0,NutButter:0};
+        var p;
+        for(p of b.products) {
+          try {
+            let product = await (await axios("/items/"+p.productId)).data;
+            let category = product.category.replaceAll(" ","");
+            result[category] += ((+product.price)* p.quantity); 
+
+          } catch (error) {
+            console.log(error);
+          }      
+        } 
+        data.push(result);  
+    } 
+    setData(data);
+}
     
   return (
+    (data.lenght!=0) && (
     <div>
     <h2 className='align-items-center justify-content-center text-center mt-3'>My history</h2>
     <BarChart
@@ -33,7 +66,7 @@ const Bars = ({data}) => {
   </BarChart>
 
   </div>
-  );
+  ));
 };
 
 export default Bars;

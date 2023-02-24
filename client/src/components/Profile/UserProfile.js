@@ -14,7 +14,7 @@ import {
 import UserDetails from '../UserDetails/UserDetails';
 import { selectUser } from '../../store/selectors/users';
 import { fetchUser } from '../../store/middlewares/users';
-import axios from '../../utils/axios'
+
 
 
 const UserProfile = () => {
@@ -23,65 +23,25 @@ const UserProfile = () => {
   const dispatch = useDispatch();
   const user = useSelector(selectUser);
   const buys = useSelector(selectBuys);
-  const [data, setData] = useState([]);
   
- 
-
     useEffect(() => {
         dispatch(fetchAllBuys(authCtx.email));
+        dispatch(fetchUser(authCtx.email)); 
+  
+        
     }, []);
-
-    useEffect(() => {
-      buysTodata();
-     
-    },[]);
-
-    useEffect(() => {
-      dispatch(fetchUser(authCtx.email));
-      
-    },[]);
-    
-    
-
-     //console.log(user);
-    // console.log(buys);
-
-    const buysTodata = async () => {
-      const data=[];
-      var b;
-      for(b of buys) {
-          var result={'WheyProtein':0,'Drinks':0,MilkProtein:0,VeganProtein:0,ProteinBars:0,NutButter:0};
-          var p;
-          var product;
-          for(p of b.products) {
-            try {
-              let product = await (await axios("/items/"+p.productId)).data;
-              let category = product.category.replaceAll(" ","");
-              // console.log(category);
-              result[category] += ((+product.price)* p.quantity); 
-
-            } catch (error) {
-              // console.log(error);
-            }      
-          } 
-          data.push(result);  
-      } 
-      setData(data);
-      // console.log(data);
-  }
-
 
   return (
     <section className={classes.header}>
       <header className='border-bottom'>
       <h1 className='pb-3 title '>My Account</h1>
-      <span className='title-welcome'>Welcome { authCtx.email }</span>
+          <span className='title-welcome'>Welcome { authCtx.email }</span>
       </header>
       <MDBContainer fluid>
       <MDBRow>
         { (buys.lenght!=0) &&
         <MDBCol size='6'>
-        <Bars data={data}/>
+        <Bars buys={buys}/>
         </MDBCol>
         }
         
