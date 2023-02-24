@@ -26,6 +26,7 @@ const enteredPassword = passwordInputRef.current.value;
 setIsLoading(true);
 
 let url ; 
+let mongoUrl;
 
 if ( isLogin){
 
@@ -34,6 +35,7 @@ if ( isLogin){
 }else{
 
   url =  'https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyDOvXq71xqny8GmJ9Rdd4tqh1PPDX5xc6Q' ; 
+  mongoUrl ='http://localhost:4000/api/users';
  
 }
 fetch (url ,
@@ -59,17 +61,37 @@ fetch (url ,
       });
     }
   }).then( (data) => {
-    console.log(data);
-    authCtx.login (data.idToken);
+    //console.log(data);
+    authCtx.login (data.idToken, data.email);
     history('/');
   }).catch (err => {
     alert (err.message);
   });
+
+  fetch(mongoUrl, {
+    method: 'POST',
+    body: JSON.stringify({
+        email: enteredEmail,
+    }),
+    headers:{
+      'Content-Type': 'application/json'
+    }}).then ( res => {
+      setIsLoading(false);
+      if(res.ok) {
+       return res.json();
+      }else{
+        return res.json ().then((data) => {
+         let errorMessage = 'Auth failed';
+      
+         throw new Error( errorMessage);
+        });
+      }
+    });
 }
 
   return (
     <section className={classes.auth}>
-      <h1>{isLogin ? 'Cotumer Login' : 'Sign Up'}</h1>
+      <h1>{isLogin ? 'Costumer Login' : 'Sign Up'}</h1>
       <form onSubmit={submitHandler}>
         <div className={classes.control}>
           <label htmlFor='email'>Email</label>

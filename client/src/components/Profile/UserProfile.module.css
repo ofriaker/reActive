@@ -1,9 +1,26 @@
-.profile {
+.profile h1 {
+  font-size: 4rem;
+  margin-left: 15%;
   margin: 3rem auto;
   text-align: center;
 }
 
-.profile h1 {
-  font-size: 4rem;
-  margin-left: 15%;
+.title {
+  margin-top: 2vh;
+  text-align: left;
+}
+
+.title h2 {
+  display: block;
+}
+
+.title-welcome {
+  font-size: 3rem;
+  text-align: left;
+  margin-bottom: 3vh;
+}
+
+.header {
+  margin-left: 3vw;
+  margin-top: 2%;
 }

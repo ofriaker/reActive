@@ -13,10 +13,19 @@ export const fetchAllProducts = () => async (dispatch) => {
     products = (await (await axios("/items")).data) ?? [];
   } catch (err) {
     dispatch(setError(err));
-    console.log(err);
+    // console.log(err);
   } finally {
     dispatch(setProducts(products));
     dispatch(setLoading(false));
+  }
+};
+
+export const fetchAllAvailableFlavoursByCategory = async (category) => {
+  try {
+    const response = await axios("/items/flavours/" + category);
+    return await (response.data) ?? [];
+  } catch (error) {
+    console.error(error);
   }
 };
 

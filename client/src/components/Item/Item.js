@@ -11,19 +11,21 @@ import {
 
 const Item = ({product}) => {
     return (
-      <MDBCard className='h-100'>
-          <MDBCardImage
-            src={product.productImageUrl}
+      <MDBCard style={{height:'530px'}}>
+        <div className={classes.card}>
+          <MDBCardImage 
+            src={product.imgUrl}
             alt='...'
-            position='top'
-            width='150px'
-            height='300px'
-          />
+            position='top'>
+          </MDBCardImage>
+          </div>
           <MDBCardBody>
             <MDBCardTitle>{product.name}</MDBCardTitle>
             <MDBCardText>
               {product.description}
-              <h4>{product.price}$<i className="fas fa-tag ms-1 p-1"></i></h4>
+            </MDBCardText>
+            <MDBCardText className={classes.price}>
+              {product.price}$<i className="fas fa-tag ms-1 p-1"></i>
             </MDBCardText>
           </MDBCardBody>
           <MDBCardFooter>
@@ -32,5 +34,5 @@ const Item = ({product}) => {
         </MDBCard> 
     );
   };
-  
+
   export default Item;

@@ -1,48 +1,19 @@
 import React from 'react';
-import {
-  MDBCard,
-  MDBCardImage,
-  MDBCardBody,
-  MDBCardTitle,
-  MDBCardText,
-  MDBCardFooter,
-  MDBRow,
-  MDBCol
-} from 'mdb-react-ui-kit';
+import { MDBRow, MDBCol} from 'mdb-react-ui-kit';
 import Item from '../Item/Item';
-import { useEffect } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { fetchAllProducts } from '../../store/middlewares/products';
-import { isLoading, selectProducts} from '../../store/selectors/products';
+import classes from './ItemsGallery.module.css'
 
-
-const ItemsGallry = ({catagory}) => {
-
-    const dispatch = useDispatch();
-    const loading = useSelector(isLoading);
-    const products = useSelector(selectProducts);
-
-    useEffect(() => {
-        dispatch(fetchAllProducts());
-      }, []); 
-
-    const filterProducts= products.filter((product) => {
-        if(catagory != null) {
-            return (product.category== catagory);
-        }
-        return product;
-    })
-      
+const ItemsGallery = ({products}) => {
     return (
     <div className='container'>
-      <MDBRow className='row-cols-1 row-cols-md-4 g-4'>
-        {filterProducts.map((product) => (
-            <MDBCol><Item product={product}></Item></MDBCol>
-        ))}
-      </MDBRow>
-    </div>
-      
+      { products.length === 0 ? 
+          <div className={classes.error}>Sorry We Couldn't Find Any Results Matching Your Search</div> : 
+          <MDBRow className='row-cols-1 row-cols-md-4 g-4'>
+            { products.map((product) => (<MDBCol key={product._id}><Item product={product}></Item></MDBCol>))}
+                                          </MDBRow>
+            }
+    </div> 
     );
   };
   
-  export default ItemsGallry;
+  export default ItemsGallery;

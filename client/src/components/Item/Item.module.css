@@ -12,10 +12,16 @@
     color: black;
 }
 
-h4 {
-    text-align: right;
+.price {
+    text-align: left;
+    font-size: 1.4em;
 }
 
-h4 i {
+.price i {
 color: #008190;
+}
+
+
+.card :hover{
+    opacity: 0.5;
 }

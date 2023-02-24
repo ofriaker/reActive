@@ -1,26 +1,30 @@
 import './Product.css';
 import Select from 'react-select';
-import { useState } from 'react';
-import QuantityButton from '../Quantity/QuantityButton';
+// import QuantityButton from '../Quantity/QuantityButton';
+import { useDispatch } from "react-redux";
+import { addItem } from '../../store/reducers/cart';
+import { useLocation } from "react-router-dom";
+import { Link } from "react-router-dom";
+
 
 
 const Product = () => {
-    //needs to get that data from the props
-    const imgSrc = "images/product.jpg";
-    const productName = "Layered Protein Bar";
-    const productDescription = "Same 6 layers, brand new look";
-    const price = 7;
-    const rating = 4.4;
-    const categoty ="Snacks";
-    let [quantity, setQuantity] = useState(1);
-    const options = [
-        { value: 'chocolate', label: 'Chocolate' },
-        { value: 'strawberry', label: 'Strawberry' },
-        { value: 'vanilla', label: 'Vanilla' }
-    ];
-    
-    const onQuantityChange = (newQuantity) => {
-        setQuantity(newQuantity);
+    const dispatch = useDispatch();
+    const location = useLocation();
+    const item = location.state;
+    let flavours = new Array(...item.flavours);
+    const newF = [];
+    let chosenFlavour = flavours[0];
+
+    flavours.forEach(f => {
+        newF.push({ value: f, label: f });
+    })
+ 
+    const onAddToCart = () => {
+        let productToCart = item;
+        productToCart.flavour = chosenFlavour;
+        productToCart.quantity = 1;
+        dispatch(addItem(productToCart));
     }
 
     const StarRating = () => {
@@ -32,7 +36,7 @@ const Product = () => {
                         <button
                             type="button"
                             key={index}
-                            className={index <= rating ? "on" : "off"}
+                            className={index <= item.rate ? "on" : "off"}
                         >
                             <span className="star">&#9733;</span>
                         </button>
@@ -40,39 +44,34 @@ const Product = () => {
                 })}
             </div>
         );
-                            
+
     };
 
     return (
         <div className="container">
             <div className='row mt-2'>
-                <h6>{categoty}  {" > "} {productName} </h6>
-             </div>
+                <h6>{item.category}  {" > "} {item.name} </h6>
+            </div>
             <div className='row mt-3'>
                 <div className="col-md-6">
-                    <img src={imgSrc} alt={productName} height="500" />
+                    <img src={item.imgUrl} alt={item.name} height="500" />
                 </div>
 
                 <div className="col-md-6">
-                    <h1>{productName}</h1>
-                    <h4>{productDescription}</h4>
-                    <StarRating/>
+                    <h1>{item.name}</h1>
+                    <h4>{item.desctiption}</h4>
+                    <StarRating />
                     <hr></hr>
-                    <h2>{price} $</h2>
+                    <h2>{item.price} ₪</h2>
                     <hr></hr>
                     <h4>Flavours:</h4>
-                    <Select options={options}></Select>
-                    <div className="row mt-1">
-                        <h2 className='col-md-2 text'>Quantity:</h2>
-                        <div className="row mt-1 quantiti_line"></div>
-                        <QuantityButton 
-                            quantity={quantity}
-                            onQuantityChange={onQuantityChange} />
-                    </div>
-                    <div className='row'>
-                        <i className='col-md-4'></i>
-                        <button className='col-md-4 to_cart'>Add to cart</button>
-                    </div>
+                    <Select options={newF} defaultValue={newF[0]} onChange={(f) => { chosenFlavour = f.value }}></Select>
+                    <Link to='/cart'>
+                        <div className='row mt-4'>
+                            <i className='col-md-4'></i>
+                            <button className='col-md-4 to_cart' onClick={onAddToCart}>Add to cart</button>
+                        </div>
+                    </Link>
                 </div>
             </div>
         </div>

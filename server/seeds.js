@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-const Item = require('./models/item')
+const Buy = require('./models/buy')
 
 mongoose.connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true })
     .then(() => {
@@ -9,56 +9,50 @@ mongoose.connect('mongodb://127.0.0.1:27017/items', { useNewUrlParser: true })
         console.log("no connection start");
     })
 
-const seedItems = [
+const seedBuys = [
     {
-        name: 'Prothein',
-        category: 'Whey protein',
-        price: '20',
-        flavour: "Vanilla",
-        productImageUrl: '/images/proteinvanil.jpg'
+        userId: 'aa@gmail.com',
+        products: [{
+          productName: 'Defence Shots (Sample)',
+          quantity: '2'
+        },
+        {
+          productName: 'Defence Shots (Sample)',
+          quantity: '1'
+        },
+        {
+          productName: 'Essential Whey Protein (Sample)',
+          quantity: '3'
+        }],
+    },
+    {
+      userId: 'aa@gmail.com',
+      products: [{
+        productName: 'Defence Shots (Sample)',
+        quantity: '2'
       },
       {
+        productName: 'Essential Whey Protein (Sample)',
+        quantity: '1'
+      }],
+    },
+    {
+      userId: '2',
+      products: [{
+        productName: '111111',
+        quantity: '2'
+      },
+      {
+        productName: '121',
+        quantity: '1'
+      },
+      {
+        productName: '131',
+        quantity: '3'
+      }],
+    }]
 
-        name: "Clear Whey Isolate",
-        imgUrl: "https://static.thcdn.com/productimg/1600/1600/12081396-1994792209042321.jpg",
-        quantity: 1,
-        category: 'Nutirion',
-        price: 5,
-        flavour: "Peach Tea"
-      },
-      {
-        name: "Sparkling Energy Drink",
-        imgUrl: "https://static.thcdn.com/productimg/1600/1600/12770761-5274858302518136.jpg",
-        quantity: 2,
-        category: 'Nutirion',
-        price: 8,
-        flavour: "Mixed Berry"
-      },
-      {
-        name: 'Protein snack',
-        category: 'Snacks',
-        price: '10',
-        flavour: "Karamel",
-        productImageUrl: '/images/snak.png'
-      },
-      {
-        name: 'Protein snack',
-        category: 'Snacks',
-        price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
-      },
-      {
-        name: 'Protein snack',
-        category: 'Drinks',
-        price: '10',
-        description: "Karamel",
-        productImageUrl: '/images/proteinvanil.jpg'
-      }
-
-]
-
-Item.insertMany(seedItems)
+Buy.insertMany(seedBuys)
     .then(res => {
         console.log(res)
     })
