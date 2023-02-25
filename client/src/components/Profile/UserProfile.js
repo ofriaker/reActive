@@ -24,6 +24,7 @@ const UserProfile = (props) => {
   const [userCount, setUserCount] = useState();
   const [userIsAdmin, setUserIsAdmin] = useState(false);
   const navigate = useNavigate();
+  const [webSocket, setWebSocket] = useState(null);
 
   useEffect(() => {
       dispatch(fetchAllBuys(authCtx.email));
@@ -40,32 +41,38 @@ const UserProfile = (props) => {
   }, [user]);
     
   useEffect(() => {
-    const socket = new WebSocket('ws://localhost:4001');
-    
-    socket.onopen = () => {
-    //  console.log('WebSocket connected');
 
-      socket.addEventListener('message', (event) => {
-        const data = JSON.parse(event.data);
-        if (data.type === 'user-count-update') {
-        //  console.log('Received user count update:', data.userCount);
-          setUserCount(data.userCount);
-        }
-        
-      });
-
-    };
-
-     return () => {
-       socket.close();
-     };
-
+    if (webSocket == null) {
+      const newWebSocket = new WebSocket('ws://localhost:4001');
+      setWebSocket(newWebSocket);
+      //console.log('new websocket created');
+    } 
   }, []);
 
+  useEffect(() => {
+
+    if (webSocket != null) {
+      webSocket.onopen = () => {
+          //console.log('WebSocket connected');
+    
+        webSocket.addEventListener('message', (event) => {
+            const data = JSON.parse(event.data);
+            if (data.type === 'user-count-update') {
+              //console.log('Received user count update:', data.userCount);
+              setUserCount(data.userCount);
+            }
+            
+          });
+      }
+    }
+
+  }, [webSocket]);
+
   const handleLogout = () => {
+    webSocket?.send(JSON.stringify({ type: 'user-logged-out' }));
+    webSocket?.close();
     authCtx.logout();
-    navigate("/");
-       
+    navigate("/"); 
   };
 
   return (
