@@ -38,7 +38,7 @@ export const fetchBestSellers = () => async (dispatch) => {
     for (let i = 0; i < 16; i++) {
       bestSellers.push(products[i])
     }
-    console.log(bestSellers);
+   // console.log(bestSellers);
   } catch (err) {
     dispatch(setError(err));
     // console.log(err);
