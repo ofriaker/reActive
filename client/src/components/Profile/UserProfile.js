@@ -90,7 +90,7 @@ const UserProfile = (props) => {
       </div>
       <MDBContainer fluid>
       <MDBRow className="align-items-baseline">
-        { (buys.lenght!=0) &&
+        { 
         <MDBCol size='6'>
         <Bars buys={buys}/>
         </MDBCol>
@@ -102,7 +102,7 @@ const UserProfile = (props) => {
         </MDBRow>
 
         <MDBRow className="align-items-baseline mt-5">
-        { (buys.length!=0) &&
+        { 
         <MDBCol size='7'>
           <MyOrders buys={buys}/>
         </MDBCol>
